@@ -1,9 +1,16 @@
+'use client';
+
 import {Button} from '@/components/ui/button';
+import DarkModeToggle from 'themes/DarkModeToggle';
+import Hero from '@/components/ui/hero/Hero';
+import TechStack from '@/components/tech/TechStack';
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <Button variant="default">Default</Button>
+    <div className="flex flex-col items-center ">
+      <Hero />
+      <TechStack />
+      <DarkModeToggle />
     </div>
   );
 }
