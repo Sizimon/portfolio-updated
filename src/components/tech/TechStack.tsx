@@ -95,7 +95,7 @@ const HeroTechStack = () => {
 
     return (
         <div className="relative flex flex-col items-center justify-center mx-auto px-4 h-lvh w-full bg-foreground">
-            {/* Gradient transition at bottom */}
+            {/* Gradient transition at top */}
             <div className="absolute left-0 right-0 top-0 h-32 pointer-events-none z-20 bg-gradient-to-b from-background to-foreground md:h-[200px]" />
 
             {/* MAIN TECHNOLOGIES DISPLAY */}
@@ -116,6 +116,9 @@ const HeroTechStack = () => {
                         </span>
                     ))}
                 </div>
+
+                {/* Gradient transition at bottom */}
+                <div className="absolute left-0 right-0 bottom-0 h-32 pointer-events-none z-20 bg-gradient-to-b from-foreground to-background md:h-[200px]" />
             </section>
         </div>
     );

@@ -9,12 +9,12 @@ const Hero = () => {
         >
             {/* Galaxy background */}
             <div className="absolute inset-0 w-full h-full z-0">
-                <Galaxy 
+                <Galaxy
                     mouseInteraction={false}
                     mouseRepulsion={false}
                     density={0.2}
                     glowIntensity={0.2}
-                    saturation={1}
+                    saturation={0.7}
                     hueShift={70}
                     twinkleIntensity={0.2}
                     rotationSpeed={0}
