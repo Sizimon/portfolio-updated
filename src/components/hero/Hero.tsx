@@ -4,7 +4,8 @@ import Galaxy from '@/blocks/Backgrounds/Galaxy/Galaxy';
 
 const Hero = () => {
     return (
-        <div
+        <section
+            id='me'
             className="relative w-full p-0 bg-background h-lvh z-0"
         >
             {/* Galaxy background */}
@@ -32,7 +33,7 @@ const Hero = () => {
                     className="font-alt text-default px-8 md:px-64 md:text-xl text-center"
                 />
             </div>
-        </div>
+        </section>
     )
 }
 

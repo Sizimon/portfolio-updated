@@ -1,69 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const HeroDescription = ({
-    text,
-    className,
-}: {
-    text: string;
-    className?: string;
-}) => {
-    const [initialPosition, setInitialPosition] = useState<number | null>(null);
-    const spanRef = useRef<HTMLSpanElement | null>(null);
+const HeroDescription = ({ text, className }: { text: string; className?: string }) => {
+    const wordRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
     useEffect(() => {
-        const updateInitialPosition = () => {
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
-            if (isMobile) {
-                setInitialPosition(25);
-            } else {
-                setInitialPosition(100);
-            }
-        };
-
-        updateInitialPosition();
-        window.addEventListener('resize', updateInitialPosition);
-
-        return () => window.removeEventListener('resize', updateInitialPosition);
-    }, []);
-
-    useEffect(() => {
-        if (initialPosition === null || !spanRef.current) return;
-
-        // Set initial position and opacity
-        gsap.set(spanRef.current, { x: initialPosition, opacity: 0 });
-
-        // Animate to visible when in viewport
-        const ctx = gsap.context(() => {
-            gsap.to(spanRef.current, {
-                x: 0,
+        if (!wordRefs.current.length) return;
+        gsap.fromTo(
+            wordRefs.current,
+            { opacity: 0, y: 18 },
+            {
                 opacity: 1,
-                duration: 0.5,
-                delay: 0,
-                scrollTrigger: {
-                    trigger: spanRef.current,
-                    start: "top 90%",
-                    once: true,
-                    // Optional: margin equivalent
-                    // markers: true,
-                },
-            });
-        }, spanRef);
-
-        return () => ctx.revert();
-    }, [initialPosition]);
-
-    if (initialPosition === null) {
-        return null;
-    }
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                stagger: 0.08,
+                delay: 2.5,
+            }
+        );
+    }, [text]);
 
     return (
-        <span
-            ref={spanRef}
-            className={className}
-            style={{ display: 'inline-block' }}
-        >
-            {text}
+        <span className={className} style={{ display: 'inline-block', overflow: 'hidden' }}>
+            {text.split(' ').map((word, i) => (
+                <span
+                    key={i}
+                    ref={el => { wordRefs.current[i] = el; }}
+                    style={{ display: 'inline-block', marginRight: '0.35em', opacity: 0 }}
+                >
+                    {word}
+                </span>
+            ))}
         </span>
     );
 };

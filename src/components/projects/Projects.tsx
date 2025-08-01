@@ -97,7 +97,9 @@ const Projects = () => {
 
     return (
         <>
-            <div className="w-full px-4 py-8 flex flex-col items-center">
+            <section
+                id="projects" 
+                className="w-full px-4 py-8 flex flex-col items-center">
                 {/* Header */}
                 <FloatyHeader letters={['P', 'R', 'O', 'J', 'E', 'C', 'T', 'S']} />
 
@@ -205,7 +207,7 @@ const Projects = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </section>
             <div
                 className='bottom-0 left-0 right-0 h-[60vh] 4k:h-[40vh] bg-gradient-to-b from from-MainDark/0 to-MainDark/100'
             />

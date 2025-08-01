@@ -94,12 +94,15 @@ const HeroTechStack = () => {
     iconRefs.current = [];
 
     return (
-        <div className="relative flex flex-col items-center justify-center mx-auto px-4 h-lvh w-full bg-foreground">
+        <section
+            id="tech-stack"
+            className="relative flex flex-col items-center justify-center mx-auto px-4 h-lvh w-full bg-foreground">
             {/* Gradient transition at top */}
             <div className="absolute left-0 right-0 top-0 h-32 pointer-events-none z-20 bg-gradient-to-b from-background to-foreground md:h-[200px]" />
 
             {/* MAIN TECHNOLOGIES DISPLAY */}
-            <section className='flex flex-col justify-center text-center p-2'>
+            <section
+                className='flex flex-col justify-center text-center p-2'>
                 <HeroTechHeader
                     text="My Technologies"
                     className="font-heading text-default uppercase text-4xl md:text-6xl 4k:text-9xl tracking-wider pb-10"
@@ -120,7 +123,7 @@ const HeroTechStack = () => {
                 {/* Gradient transition at bottom */}
                 <div className="absolute left-0 right-0 bottom-0 h-32 pointer-events-none z-20 bg-gradient-to-b from-foreground to-background md:h-[200px]" />
             </section>
-        </div>
+        </section>
     );
 };
 
