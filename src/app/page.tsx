@@ -6,6 +6,7 @@ import { Navigation } from '@/components/Navigation';
 import Hero from '@/components/hero/Hero';
 import TechStack from '@/components/tech/TechStack';
 import Projects from '@/components/projects/Projects';
+import { Contact } from '@/components/Contact';
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       <Hero />
       <TechStack />
       <Projects />
-      <DarkModeToggle />
+      <Contact />
     </div>
   );
 }

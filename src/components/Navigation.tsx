@@ -4,11 +4,13 @@ import gsap from 'gsap';
 import { FaRegMehBlank } from "react-icons/fa";
 import { GiStack } from "react-icons/gi";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
+import { MdConnectWithoutContact } from "react-icons/md";
 
 const NAV_ITEMS = [
     { icon: <FaRegMehBlank className='w-6 h-6' />, href: "#me", section: "me" },
     { icon: <GiStack className='w-6 h-6' />, href: "#tech-stack", section: "tech-stack" },
     { icon: <AiOutlineFundProjectionScreen className='w-6 h-6' />, href: "#projects", section: "projects" },
+    { icon: <MdConnectWithoutContact className='w-6 h-6' />, href: "#contact", section: "contact" }
 ]
 
 export const Navigation: React.FC = () => {
@@ -33,7 +35,7 @@ export const Navigation: React.FC = () => {
         if (!navRef.current) return;
         gsap.fromTo(
             navRef.current,
-            { opacity: 0, y: -50 },
+            { opacity: 0 },
             { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
         );
     }, []);
