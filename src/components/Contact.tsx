@@ -42,12 +42,12 @@ export const Contact: React.FC = () => {
             {/* Contact form using formsubmit to handle emails */}
             <form onSubmit={handleSubmit} className="flex flex-col text-default bg-background p-8 rounded-lg shadow-lg w-full max-w-md mx-auto z-30 gap-4">
                 <h2 className="text-3xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Reach Out!</h2>
-                <input type="text" name="name" placeholder="Name" required className="bg-foreground p-2 rounded-full" />
-                <input type="email" name="email" placeholder="Email" required className="bg-foreground p-2 rounded-full" />
-                <Textarea name="message" minLength={25} placeholder="Your Message" required className="bg-foreground p-2 rounded-lg" />
+                <input type="text" name="name" placeholder="Name" required className="bg-foreground/50 p-2 rounded-full text-pop caret-pop" />
+                <input type="email" name="email" placeholder="Email" required className="bg-foreground/50 p-2 rounded-full text-pop caret-pop" />
+                <Textarea name="message" minLength={25} placeholder="Your Message" required className="bg-foreground/50 p-2 rounded-2xl text-pop caret-pop" />
 
                 {/* Submit button */}
-                <button type="submit" className="bg-pop text-background p-2 rounded-full">Send</button>
+                <button type="submit" className="bg-pop text-background p-2 rounded-full hover:brightness-110 cursor-pointer transition-all duration-300 ease-in-out">Send</button>
             </form>
             <span>{result}</span>
 
