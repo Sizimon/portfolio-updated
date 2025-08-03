@@ -82,7 +82,7 @@ export const Navigation: React.FC = () => {
     return (
         <nav
             ref={navRef}
-            className="fixed mt-4 top-0 left-1/2 -translate-x-1/2 w-1/6 p-2 rounded-full bg-zinc-700/40 z-40 border-red-100 border-1 backdrop-blur-sm">
+            className="fixed mt-4 top-0 left-1/2 -translate-x-1/2 w-4/6 md:w-1/6 p-2 rounded-full bg-zinc-700/40 z-40 border-red-100 border-1 backdrop-blur-sm">
             <ul className="flex space-x-4 justify-evenly z-50">
                 <div
                     ref={borderRef}
