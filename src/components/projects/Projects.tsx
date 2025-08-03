@@ -28,25 +28,27 @@ const projects: Array<{
         long: `
         Grippendor is a Discord bot designed to help communities create & manage their own Discord servers. 
         It offers features like role management, event scheduling, game filtering and more. 
+
         The bot is built with a focus on ease of use and flexibility, allowing server owners to customise it to their needs. 
         In every way, the bot aims to ease the burden of managing a Discord server, making it more accessible for everyone.
         `,
         builtWith: "Javascript, React, Node.js (Discord.js/Express), PostgreSQL",
         image: images.Grippendor ? `url(${images.Grippendor})` : "url('/images/default.jpg')",
         demo: "https://szymonsamus.dev/bot-dashboard/",
-        github: "https://github.com/user/project1"
+        github: "https://github.com/Sizimon/attendance-tracker/blob/main/README.md"
     },
     {
         title: "noto()",
         short: "Rich Text Editor & Notekeeping App",
         long: `
         Noto() is a rich text editor and notekeeping application that allows users to create, edit, and manage notes with advanced formatting options, filtering and categorising. 
+        
         Future plans include AI integration for summarising and generating content & a clip curating feature for enhanced study flows.
         `,
         builtWith: "Typescript, Next.js, Node.js (Express), PostgreSQL",
         image: images.Noto ? `url(${images.Noto})` : "url('/images/default.jpg')",
         demo: "https://szymonsamus.dev/noto/",
-        github: "https://github.com/user/project2"
+        github: "https://github.com/Sizimon/noto-frontend/blob/main/README.md"
     },
     {
         title: "Guruweather",
@@ -54,6 +56,7 @@ const projects: Array<{
         long: `
         Guruweather is a weather forecasting application that provides real-time weather updates, including temperature, humidity, wind speed, and more.
         It uses a third-party API to fetch weather data and display it in an easy-to-read format with helpful animations.
+
         The app is designed to be user-friendly and visually appealing, making it easy for users to check the weather at a glance.
         Future plans include adding features like location-based weather alerts and a more detailed forecast view.`,
         builtWith: "Javascript, React",
@@ -71,20 +74,27 @@ const Projects = () => {
 
     // Animate banners with GSAP
     useEffect(() => {
-        projects.forEach((_, idx) => {
-            const isHovered = hovered === idx;
-            gsap.to(bannerRefs.current[idx], {
+        contentRefs.current.forEach(ref => {
+            if (ref) {
+                if (ref) gsap.killTweensOf(ref);
+            }
+        })
+
+
+        projects.forEach((_, index) => {
+            const isHovered = hovered === index;
+            gsap.to(bannerRefs.current[index], {
                 flexGrow: isHovered ? 3 : 1,
                 zIndex: isHovered ? 20 : 10,
                 duration: 0.1,
                 ease: "power3.inOut"
             });
-            gsap.to(bgRefs.current[idx], {
+            gsap.to(bgRefs.current[index], {
                 filter: isHovered ? "blur(6px)" : "blur(0px)",
                 duration: 0.3,
                 ease: "power3.inOut"
             });
-            gsap.to(contentRefs.current[idx], {
+            gsap.to(contentRefs.current[index], {
                 opacity: isHovered ? 1 : 0,
                 y: isHovered ? 0 : 40,
                 pointerEvents: isHovered ? "auto" : "none",
@@ -105,9 +115,9 @@ const Projects = () => {
 
                 {/* Mobile: vertical cards */}
                 <div className="flex flex-col gap-6 w-full max-w-md md:hidden">
-                    {projects.map((project, idx) => (
+                    {projects.map((project, index) => (
                         <div
-                            key={idx}
+                            key={index}
                             className="relative rounded-lg shadow-lg overflow-hidden"
                             style={{
                                 backgroundImage: project.image,
@@ -115,17 +125,24 @@ const Projects = () => {
                                 backgroundPosition: 'center',
                             }}
                         >
-                            <div className="absolute inset-0 bg-black/60" />
+                            <div className="absolute inset-0 bg-black/80" />
                             <div className="relative z-10 p-6 flex flex-col items-center text-white">
-                                <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+                                <h3 className="text-2xl mb-2 text-pop font-heading uppercase">{project.title}</h3>
                                 <p className="mb-4 text-center">{project.short}</p>
-                                <p className="mb-4 text-center text-sm">{project.long}</p>
+                                <p className="mb-4 text-center text-sm">
+                                    {project.long.split('\n').map((line, index) => (
+                                        <React.Fragment key={index}>
+                                            {line}
+                                            <br />
+                                        </React.Fragment>
+                                    ))}
+                                </p>
                                 <div className="flex gap-4">
                                     <a
                                         href={project.demo}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-pop text-white rounded hover:brightness-110 transition"
+                                        className="px-4 py-2 bg-pop/80 text-default rounded-full hover:bg-pop/90 transition"
                                     >
                                         Live Demo
                                     </a>
@@ -133,7 +150,7 @@ const Projects = () => {
                                         href={project.github}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-foreground text-white rounded hover:brightness-110 transition"
+                                        className="px-4 py-2 bg-foreground text-default rounded-full hover:bg-foreground/80 transition"
                                     >
                                         GitHub
                                     </a>
@@ -145,23 +162,23 @@ const Projects = () => {
 
                 {/* Desktop: GSAP expanding banners */}
                 <div className="hidden md:flex w-full max-w-6xl h-[28rem] items-stretch justify-center gap-x-4">
-                    {projects.map((project, idx) => (
+                    {projects.map((project, index) => (
                         <div
-                            key={idx}
-                            ref={el => {bannerRefs.current[idx] = el}}
+                            key={index}
+                            ref={element => {bannerRefs.current[index] = element}}
                             className={`
-                            relative flex flex-col justify-center items-center overflow-hidden cursor-pointer
+                            relative flex flex-col justify-center items-center overflow-hidden cursor-default
                             rounded-lg shadow-lg
                             transition-all duration-500
                             flex-1 basis-0 min-w-0
                         `}
                             style={{ minWidth: 0 }}
-                            onMouseEnter={() => setHovered(idx)}
+                            onMouseEnter={() => setHovered(index)}
                             onMouseLeave={() => setHovered(null)}
                         >
                             {/* Background image layer with GSAP blur */}
                             <div
-                                ref={el => {bgRefs.current[idx] = el}}
+                                ref={element => {bgRefs.current[index] = element}}
                                 className="absolute inset-0 transition-all duration-500"
                                 style={{
                                     backgroundImage: project.image,
@@ -171,26 +188,33 @@ const Projects = () => {
                                 }}
                             />
                             {/* Overlay for preview which darkens image if not hovered */}
-                            <div className={`absolute inset-0 transition-all duration-500 ${hovered === idx ? "bg-black/70" : "bg-black/60"}`} />
+                            <div className={`absolute inset-0 transition-all duration-500 ${hovered === index ? "bg-black/70" : "bg-black/60"}`} />
                             {/* Preview content */}
-                            <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === idx ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+                            <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
                                 <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
                                 <p className="text-center">{project.short}</p>
                             </div>
                             {/* Detailed view overlay if hovered */}
                             <div
-                                ref={el => {contentRefs.current[idx] = el}}
+                                ref={element => {contentRefs.current[index] = element}}
                                 className="absolute inset-0 text-white flex flex-col justify-center items-center p-8 z-20"
                                 style={{ opacity: 0, pointerEvents: "none", transform: "translateY(40px)" }}
                             >
-                                <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
-                                <p className="mb-4">{project.long}</p>
+                                <h2 className="text-3xl font-heading text-pop uppercase mb-2">{project.title}</h2>
+                                <p className="mb-4">
+                                    {project.long.split('\n').map((line, index) => (
+                                        <React.Fragment key={index}>
+                                            {line}
+                                            <br />
+                                        </React.Fragment>
+                                    ))}
+                                </p>
                                 <div className="flex gap-4">
                                     <a
                                         href={project.demo}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-pop text-white rounded hover:brightness-110 transition cursor-pointer"
+                                        className="px-4 py-2 bg-pop/80 hover:bg-pop/90 text-default rounded-full transition cursor-pointer"
                                     >
                                         Live Demo
                                     </a>
@@ -198,7 +222,7 @@ const Projects = () => {
                                         href={project.github}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 transition cursor-pointer"
+                                        className="px-4 py-2 bg-foreground text-default rounded-full hover:bg-foreground/80 transition cursor-pointer"
                                     >
                                         GitHub
                                     </a>

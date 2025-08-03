@@ -48,7 +48,7 @@ export const AlternatingQuotes: React.FC = () => {
                 ref={quoteRefs}
                 className="text-pop text-center font-alt text-sm md:text-md"
             >
-                "{QUOTES[current]}"
+                "{QUOTES[current]}" - Szymon Samus
             </div>
         </div>
     );

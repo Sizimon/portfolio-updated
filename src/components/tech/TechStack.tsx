@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaReact, FaNode, FaJs, FaAws, FaDocker } from "react-icons/fa6";
@@ -14,6 +14,7 @@ export const HeroTechHeader = ({
     text: string;
 }) => {
     const headerRef = useRef<HTMLHeadingElement | null>(null);
+
     return (
         <header
             ref={headerRef}
