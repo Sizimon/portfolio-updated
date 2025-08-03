@@ -11,10 +11,11 @@ const FloatyHeader: React.FC<FloatyHeaderProps> = ({ letters }) => {
     const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
     useEffect(() => {
+        const currentRefs = letterRefs.current;
         // Timeline for staggered fade-in
         const tl = gsap.timeline();
         tl.fromTo(
-            letterRefs.current,
+            currentRefs,
             { opacity: 0, y: 30, rotation: 0 },
             {
                 opacity: 1,
@@ -27,7 +28,7 @@ const FloatyHeader: React.FC<FloatyHeaderProps> = ({ letters }) => {
         );
 
         // After fade-in, start floaty wiggle for each letter
-        letterRefs.current.forEach((el, i) => {
+        currentRefs.forEach((el, i) => {
             if (!el) return;
             const duration = Math.random() * 4 + 4; // 4-8s
             const amplitude = Math.random() * 12 + 12; // 12-24px
@@ -44,7 +45,7 @@ const FloatyHeader: React.FC<FloatyHeaderProps> = ({ letters }) => {
 
         // Cleanup on unmount
         return () => {
-            gsap.killTweensOf(letterRefs.current);
+            gsap.killTweensOf(currentRefs);
         };
     }, []);
 

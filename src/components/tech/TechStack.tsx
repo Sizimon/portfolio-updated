@@ -14,41 +14,6 @@ export const HeroTechHeader = ({
     text: string;
 }) => {
     const headerRef = useRef<HTMLHeadingElement | null>(null);
-    const [initialPosition, setInitialPosition] = useState<{ x: number, y: number } | null>(null);
-
-    useEffect(() => {
-        const updateAnimation = () => {
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
-            setInitialPosition({ x: 0, y: 100 });
-        };
-
-        updateAnimation();
-        window.addEventListener('resize', updateAnimation);
-
-        return () => window.removeEventListener('resize', updateAnimation);
-    }, []);
-
-    useEffect(() => {
-        if (initialPosition === null || !headerRef.current) return;
-
-        gsap.set(headerRef.current, { x: initialPosition.x, y: initialPosition.y, opacity: 0 });
-
-        gsap.to(headerRef.current, {
-            x: 0,
-            y: 0,
-            opacity: 1,
-            duration: 1.5,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: headerRef.current,
-                start: "top 90%",
-                once: true,
-            },
-        });
-    }, [initialPosition]);
-
-    if (initialPosition === null) return null;
-
     return (
         <header
             ref={headerRef}

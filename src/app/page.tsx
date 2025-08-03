@@ -1,7 +1,5 @@
 'use client';
 
-import {Button} from '@/components/ui/button';
-import DarkModeToggle from 'themes/DarkModeToggle';
 import { Navigation } from '@/components/Navigation';
 import Hero from '@/components/hero/Hero';
 import TechStack from '@/components/tech/TechStack';
