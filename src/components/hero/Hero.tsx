@@ -1,3 +1,4 @@
+import { AlternatingQuotes } from './AlternatingQuotes';
 import HeroDescription from './Description';
 import HeroTypewriter from './Typewriter';
 import Galaxy from '@/blocks/Backgrounds/Galaxy/Galaxy';
@@ -32,6 +33,7 @@ const Hero = () => {
                     text="Full Stack Developer blending creativity and code to turn concepts into working, impactful apps. Learning fast, building faster."
                     className="font-alt text-default px-8 md:px-64 md:text-xl text-center"
                 />
+                <AlternatingQuotes />
             </div>
         </section>
     )
