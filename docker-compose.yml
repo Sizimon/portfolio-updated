@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  portfolio:
+    image: shhmon/portfolio:latest
+    container_name: portfolio
+    ports:
+      - "5001:5000"
+    env_file:
+      - .env
+
+  bot-dashboard:
+    image: shhmon/bot-dashboard:latest
+    container_name: bot-dashboard
+    ports:
+      - "5002:5000"
+    env_file:
+      - .env
+    depends_on:
+      - bot-backend
+      - bot-database
+
+  bot-backend:
+    image: shhmon/bot-backend:latest
+    container_name: bot-backend
+    env_file:
+      - .env
+    ports:
+      - "5003:5003"
+    depends_on:
+      bot-database:
+        condition: service_healthy
+
+  bot-database:
+    image: postgres:13
+    container_name: bot-database
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - bot_db_volume:/var/lib/postgresql/data
+      - /home/ec2-user/portfolio/updatedinit.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+  
+  weather-app:
+    image: shhmon/weather-api:latest
+    container_name: weather-app
+    environment:
+      - REACT_APP_WEATHER_API_KEY=${REACT_APP_WEATHER_API_KEY}
+    env_file:
+      - .env
+    ports:
+      - "5004:5000"
+
+  noto-frontend:
+    image: shhmon/noto-frontend:latest
+    container_name: noto
+    ports:
+      - "5005:5000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - noto-backend
+      - noto-database
+
+  noto-backend:
+    image: shhmon/noto-backend:latest
+    container_name: noto-backend
+    environment:
+      - NOTO_DB_USER=${NOTO_DB_USER}
+      - NOTO_DB_HOST=${NOTO_DB_HOST}
+      - NOTO_DB_NAME=${NOTO_DB_NAME}
+      - NOTO_DB_PASSWORD=${NOTO_DB_PASSWORD}
+      - NOTO_DB_PORT=${NOTO_DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+    ports:
+      - "5006:5006"
+    depends_on:
+      noto-database:
+        condition: service_healthy
+
+  noto-database:
+    image: postgres:13
+    container_name: noto-database
+    environment:
+      - POSTGRES_USER=${NOTO_DB_USER}
+      - POSTGRES_PASSWORD=${NOTO_DB_PASSWORD}
+      - POSTGRES_DB=${NOTO_DB_NAME}
+    ports:
+      - "5433:5432"
+    volumes:
+      - noto_db_volume:/var/lib/postgresql/data
+      - /home/ec2-user/portfolio/Noto-init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${NOTO_DB_USER} -d ${NOTO_DB_NAME}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+volumes:
+  bot_db_volume:
+  noto_db_volume:

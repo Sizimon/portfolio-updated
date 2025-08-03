@@ -29,7 +29,7 @@ const Hero = () => {
                 <h1 className='font-alt font-extralight uppercase text-2xl md:text-5xl 4k:text-9xl text-center text-default'>Szymon Samus</h1>
                 <HeroTypewriter text={"Full-Stack Developer"} />
                 <HeroDescription
-                    text="I am a Junior Software Developer with a passion for bringing ideas to life. Constantly staying updated on the latest trends and eager to contribute to innovative projects."
+                    text="Full Stack Developer blending creativity and code to turn concepts into working, impactful apps. Learning fast, building faster."
                     className="font-alt text-default px-8 md:px-64 md:text-xl text-center"
                 />
             </div>
