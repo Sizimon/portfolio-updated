@@ -29,5 +29,8 @@ COPY --from=builder /app/next.config.ts ./next.config.ts
 # Expose port
 EXPOSE 5000
 
+# Set Next.js to listen on port 5000
+ENV PORT=5000
+
 # Start Next.js app
 CMD ["npm", "start"]
