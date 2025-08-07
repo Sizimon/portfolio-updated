@@ -10,8 +10,9 @@ export default function CustomThemeProvider({
     return (
         <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="dark"
+            enableSystem={false}
+            themes={['dark']}
             disableTransitionOnChange={false}
         >
             {children}
