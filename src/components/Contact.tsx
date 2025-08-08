@@ -41,7 +41,7 @@ export const Contact: React.FC = () => {
 
             {/* Contact form using formsubmit to handle emails */}
             <form onSubmit={handleSubmit} className="flex flex-col text-default bg-background p-8 rounded-lg shadow-lg w-full max-w-md mx-auto z-30 gap-4">
-                <h2 className="text-3xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Reach Out!</h2>
+                <h2 className="text-3xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Leave me a message C:</h2>
                 <input type="text" name="name" placeholder="Name" required className="bg-foreground/50 p-2 rounded-full text-pop caret-pop" />
                 <input type="email" name="email" placeholder="Email" required className="bg-foreground/50 p-2 rounded-full text-pop caret-pop" />
                 <Textarea name="message" minLength={25} placeholder="Your Message" required className="bg-foreground/50 p-2 rounded-2xl text-pop caret-pop" />
