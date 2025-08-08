@@ -1,11 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 import { Textarea } from '@/components/ui/textarea'
+import { ClipLoader } from 'react-spinners';
 
 export const Contact: React.FC = () => {
     const [result, setResult] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        setLoading(true);
         event.preventDefault();
         setResult('Submitting...');
         const form = event.currentTarget;
@@ -31,6 +34,7 @@ export const Contact: React.FC = () => {
             console.log("Error:", error);
             setResult('An error occurred. Please try again later.');    
         }
+        setLoading(false);
     }
 
 
@@ -47,10 +51,15 @@ export const Contact: React.FC = () => {
                 <Textarea name="message" minLength={25} placeholder="Your Message" required className="bg-foreground/50 p-2 rounded-2xl text-pop caret-pop" />
 
                 {/* Submit button */}
-                <button type="submit" className="bg-pop text-background p-2 rounded-full hover:brightness-110 cursor-pointer transition-all duration-300 ease-in-out">Send</button>
+                { loading ? (
+                    <button type='submit' disabled className="bg-pop text-background p-2 rounded-full cursor-not-allowed opacity-50 transition-all duration-300 ease-in-out">
+                        {<ClipLoader size={20} color="#000000" />}
+                    </button>
+                ) : (
+                    <button type="submit" className="bg-pop text-background p-2 rounded-full hover:brightness-110 cursor-pointer transition-all duration-300 ease-in-out">Send</button>
+                )}
             </form>
             <span>{result}</span>
-
             {/* Gradient transition at bottom */}
             <div className="absolute left-0 right-0 bottom-0 h-32 pointer-events-none z-20 bg-gradient-to-t from-background to-foreground md:h-[200px]" />
         </section>
