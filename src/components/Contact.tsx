@@ -11,7 +11,7 @@ export const Contact: React.FC = () => {
         const form = event.currentTarget;
         const formData = new FormData(event.currentTarget);
 
-        formData.append('access_key', process.env.NEXT_PUBLIC_CONTACT_API || '');
+        formData.append('access_key', '0a5ad6f0-1d27-4a48-bda3-504b7807a07a');
 
         try {
             const response = await fetch("https://api.web3forms.com/submit", {

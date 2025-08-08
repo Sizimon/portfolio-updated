@@ -12,8 +12,6 @@ RUN npm install
 COPY . .
 
 # Build Next.js app (outputs to .next)
-ARG NEXT_PUBLIC_CONTACT_API
-ENV NEXT_PUBLIC_CONTACT_API=$NEXT_PUBLIC_CONTACT_API
 RUN npm run build
 
 # -- Production image --

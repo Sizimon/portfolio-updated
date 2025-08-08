@@ -25,9 +25,7 @@ jobs:
         env:
           NEXT_PUBLIC_CONTACT_API: ${{ secrets.NEXT_PUBLIC_CONTACT_API }}
         run: | 
-          docker buildx build --platform linux/amd64 \ 
-          --build-arg NEXT_PUBLIC_CONTACT_API=${{ secrets.NEXT_PUBLIC_CONTACT_API }} \ 
-          -t shhmon/portfolio:latest --push .
+          docker buildx build --platform linux/amd64 -t shhmon/portfolio:latest --push .
 
       - name: Deploy services
         run: |
