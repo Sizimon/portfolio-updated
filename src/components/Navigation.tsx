@@ -18,7 +18,6 @@ export const Navigation: React.FC = () => {
     const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
     const borderRef = useRef<HTMLDivElement | null>(null);
     const [active, setActive] = useState<number>(0);
-    console.log(active)
 
     // Click handler to set active item and scroll to section
     const handleItemClick = (index: number) => {
