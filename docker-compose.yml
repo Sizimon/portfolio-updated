@@ -9,20 +9,20 @@ services:
     env_file:
       - .env
 
-  bot-dashboard:
-    image: shhmon/bot-dashboard:latest
-    container_name: bot-dashboard
+  grippendor:
+    image: shhmon/grippendor:latest
+    container_name: grippendor
     ports:
       - "5002:5000"
     env_file:
       - .env
     depends_on:
-      - bot-backend
-      - bot-database
+      - grippendor-backend
+      - grippendor-database
 
-  bot-backend:
-    image: shhmon/bot-backend:latest
-    container_name: bot-backend
+  grippendor-backend:
+    image: shhmon/grippendor-backend:latest
+    container_name: grippendor-backend
     env_file:
       - .env
     ports:
@@ -31,9 +31,9 @@ services:
       bot-database:
         condition: service_healthy
 
-  bot-database:
+  grippendor-database:
     image: postgres:13
-    container_name: bot-database
+    container_name: grippendor-database
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -50,8 +50,8 @@ services:
       retries: 3
   
   weather-app:
-    image: shhmon/weather-api:latest
-    container_name: weather-app
+    image: shhmon/guruweather:latest
+    container_name: guruweather
     environment:
       - REACT_APP_WEATHER_API_KEY=${REACT_APP_WEATHER_API_KEY}
     env_file:
