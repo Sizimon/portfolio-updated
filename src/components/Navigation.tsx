@@ -45,10 +45,12 @@ export const Navigation: React.FC = () => {
         const el = itemRefs.current[active];
         const border = borderRef.current;
         if (el && border) {
-            const { offsetLeft, offsetWidth } = el;
+            const { offsetTop, offsetHeight } = el;
             gsap.to(border, {
-                x: offsetLeft,
-                width: offsetWidth,
+                y: offsetTop,
+                height: offsetHeight,
+                x: 0,
+                width: '100%',
                 duration: 0.35,
                 ease: "power2.out",
             });
@@ -82,14 +84,14 @@ export const Navigation: React.FC = () => {
     return (
         <nav
             ref={navRef}
-            className="fixed mt-4 top-0 left-1/2 -translate-x-1/2 w-4/6 md:w-1/6 p-2 rounded-full bg-zinc-700/40 z-40 border-red-100 border-1 backdrop-blur-sm">
-            <ul className="flex space-x-4 justify-evenly z-50">
+            className="fixed mt-4 left-0 top-1/2 -translate-y-1/2 h-2/4 w-12 p-2 rounded-r-full bg-zinc-700/40 z-40 border-red-100 border-1 backdrop-blur-sm flex flex-col items-center justify-center">
+            <ul className="flex flex-col space-y-4 justify-evenly items-center h-full relative z-50">
                 <div
                     ref={borderRef}
-                    className="absolute bottom-0 h-[4px] rounded-full bg-pop shadow-[0_0_8px_2px_oklch(83.076%_0.22016_128.976),0_0_24px_4px_oklch(83.076%_0.22016_128.976)] transition-all duration-300"
+                    className="absolute left-0 w-full h-[40px] rounded-full bg-pop shadow-[0_0_8px_2px_oklch(70.4%_0.191_22.216),0_0_24px_4px_oklch(70.4%_0.191_22.216)] transition-all duration-300"
                     style={{
-                        left: 0,
-                        width: 0,
+                        top: 0,
+                        height: 0,
                         pointerEvents: "none",
                         zIndex: 1,
                     }}
@@ -98,7 +100,7 @@ export const Navigation: React.FC = () => {
                     <li
                         key={item.href}
                         ref={el => { itemRefs.current[index] = el }}
-                        className="relative"
+                        className="relative flex items-center justify-center"
                     >
                         <span
                             onClick={() => handleItemClick(index)}

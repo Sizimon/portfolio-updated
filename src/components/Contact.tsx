@@ -37,18 +37,19 @@ export const Contact: React.FC = () => {
         setLoading(false);
     }
 
-
     return (
-        <section id="contact" className="relative flex flex-col items-center justify-center mx-auto px-4 h-lvh w-full bg-foreground">
+        <section id="contact" className="relative flex flex-row items-center justify-center mx-auto px-4 h-lvh w-full bg-foreground">
             {/* Background gradient at top */}
             <div className="absolute left-0 right-0 top-0 h-32 pointer-events-none z-20 bg-gradient-to-b from-background to-foreground md:h-[200px]" />
 
             {/* Contact form using formsubmit to handle emails */}
             <form onSubmit={handleSubmit} className="flex flex-col text-default bg-background p-8 rounded-lg shadow-lg w-full max-w-md mx-auto z-30 gap-4">
+                {/* Result message */}
+                {result && <p className="text-center">{result}</p>}
                 <h2 className="text-3xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Leave me a message C:</h2>
-                <input type="text" name="name" placeholder="Name" required className="bg-foreground/50 p-2 rounded-full text-pop caret-pop" />
-                <input type="email" name="email" placeholder="Email" required className="bg-foreground/50 p-2 rounded-full text-pop caret-pop" />
-                <Textarea name="message" minLength={25} placeholder="Your Message" required className="bg-foreground/50 p-2 rounded-2xl text-pop caret-pop" />
+                <input type="text" name="name" placeholder="Name" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop" />
+                <input type="email" name="email" placeholder="Email" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop" />
+                <Textarea name="message" minLength={25} placeholder="Your Message" required className="bg-foreground/20 p-2 rounded-2xl text-pop caret-pop" />
 
                 {/* Submit button */}
                 { loading ? (
@@ -59,7 +60,6 @@ export const Contact: React.FC = () => {
                     <button type="submit" className="bg-pop text-background p-2 rounded-full hover:brightness-110 cursor-pointer transition-all duration-300 ease-in-out">Send</button>
                 )}
             </form>
-            <span>{result}</span>
             {/* Gradient transition at bottom */}
             <div className="absolute left-0 right-0 bottom-0 h-32 pointer-events-none z-20 bg-gradient-to-t from-background to-foreground md:h-[200px]" />
         </section>

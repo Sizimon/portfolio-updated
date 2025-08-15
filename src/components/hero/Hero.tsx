@@ -1,37 +1,33 @@
 import { AlternatingQuotes } from './AlternatingQuotes';
 import HeroDescription from './Description';
 import HeroTypewriter from './Typewriter';
-import Galaxy from '@/blocks/Backgrounds/Galaxy/Galaxy';
+// import Galaxy from '@/blocks/Backgrounds/Galaxy/Galaxy';
 
 const Hero = () => {
     return (
         <section
             id='me'
-            className="relative w-full p-0 bg-background h-lvh z-0"
+            className="relative flex justify-center p-0 bg-background w-full h-lvh z-0"
         >
-            {/* Galaxy background */}
+            {/* Banner Video */}
             <div className="absolute inset-0 w-full h-full z-0">
-                <Galaxy
-                    mouseInteraction={false}
-                    mouseRepulsion={false}
-                    density={0.2}
-                    glowIntensity={0.2}
-                    saturation={0.7}
-                    hueShift={70}
-                    twinkleIntensity={0.2}
-                    rotationSpeed={0}
-                    starSpeed={1}
-                    speed={0.5}
-                    transparent={true}
-                />
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className='w-full h-full object-cover opacity-65 blur-xs'
+                >
+                    <source src="/banner.webm" type="video/webm" />
+                </video>
             </div>
 
-            <div className="relative flex flex-col z-50 h-full justify-center items-center">
-                <h1 className='font-alt font-extralight uppercase text-2xl md:text-5xl 4k:text-9xl text-center text-default'>Szymon Samus</h1>
+            <div className="relative flex flex-col z-50 h-full w-5/6 md:w-4/6  justify-center items-center">
+                <h1 className='font-alt font-extralight uppercase text-2xl md:text-5xl 2xl:text-8xl text-center text-pop'>Szymon Samus</h1>
                 <HeroTypewriter text={"Full-Stack Developer"} />
                 <HeroDescription
                     text="Full Stack Developer blending creativity and code to turn concepts into working, impactful apps. Learning fast, building faster."
-                    className="font-alt text-default px-8 md:px-64 md:text-xl text-center"
+                    className="font-alt text-default px-8 md:text-xl 2xl:text-5xl text-center"
                 />
                 <AlternatingQuotes />
             </div>
