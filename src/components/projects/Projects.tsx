@@ -99,7 +99,7 @@ const Projects = () => {
                 y: isHovered ? 0 : 40,
                 pointerEvents: isHovered ? "auto" : "none",
                 duration: 0.5,
-                delay: isHovered ? 0.4 : 0,
+                delay: isHovered ? 0.6 : 0,
                 ease: "power3.out"
             });
         });
