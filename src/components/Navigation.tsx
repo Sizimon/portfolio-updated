@@ -126,7 +126,7 @@ export const Navigation: React.FC = () => {
     return (
         <nav
             ref={navRef}
-            className="fixed mt-4 left-0 top-0 h-2/4 w-10 md:w-12 2xl:w-36 p-2 rounded-r-full bg-zinc-700/40 z-40 backdrop-blur-sm flex flex-col items-center justify-center">
+            className="fixed mt-4 left-0 top-1/2 -translate-y-1/2 h-2/4 w-10 md:w-12 2xl:w-36 p-2 rounded-r-full bg-zinc-700/40 z-40 backdrop-blur-sm flex flex-col items-center justify-center">
             <div
                 ref={borderRef}
                 className="absolute right-0 top-0 w-1 rounded-full bg-pop shadow-[0_0_8px_2px_oklch(70.4%_0.191_22.216),0_0_24px_4px_oklch(70.4%_0.191_22.216)] transition-all duration-300"
