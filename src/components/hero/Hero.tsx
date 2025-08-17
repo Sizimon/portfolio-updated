@@ -1,6 +1,6 @@
 import { AlternatingQuotes } from './AlternatingQuotes';
 import HeroDescription from './Description';
-import HeroTypewriter from './Typewriter';
+import HeroTypewriter from '../../shared/Typewriter';
 // import Galaxy from '@/blocks/Backgrounds/Galaxy/Galaxy';
 
 const Hero = () => {

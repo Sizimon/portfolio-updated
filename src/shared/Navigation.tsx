@@ -6,7 +6,7 @@ import { GiStack } from "react-icons/gi";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import { MdConnectWithoutContact } from "react-icons/md";
 
-const NAV_ITEMS = [
+const NAV_ITEMS = [ // Navigation items for the sidebar (customise at will)
     { icon: <FaRegMehBlank className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#me", section: "me", label: "About Me" },
     { icon: <GiStack className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#tech-stack", section: "tech-stack", label: "Tech Stack" },
     { icon: <AiOutlineFundProjectionScreen className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#projects", section: "projects", label: "Projects" },

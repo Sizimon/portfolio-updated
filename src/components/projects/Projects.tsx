@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import FloatyHeader from './FloatyHeader';
+import FloatyHeader from '../../shared/FloatyHeader';
 import Grippendor from '@/assets/Grippy_1.png';
 import Noto from '@/assets/noto.png';
 import Guruweather from '@/assets/Weather_3.png';
