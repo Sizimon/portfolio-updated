@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import FloatyHeader from './FloatyHeader';
+import FloatyHeader from '../../shared/FloatyHeader';
 import Grippendor from '@/assets/Grippy_1.png';
 import Noto from '@/assets/noto.png';
 import Guruweather from '@/assets/Weather_3.png';
@@ -22,10 +22,10 @@ const projects: Array<{
     demo: string;
     github: string;
 }> = [
-    {
-        title: "Grippendor",
-        short: "Discord Community Management Bot",
-        long: `
+        {
+            title: "Grippendor",
+            short: "Discord Community Management Bot",
+            long: `
         Grippendor is a Discord bot designed to help communities create & manage their own Discord servers. 
         It offers features like role management, event scheduling, game filtering and more. 
 
@@ -45,15 +45,15 @@ const projects: Array<{
         
         Future plans include AI integration for summarising and generating content & a clip curating feature for enhanced study flows.
         `,
-        builtWith: "Typescript, Next.js, Node.js (Express), PostgreSQL",
-        image: images.Noto ? `url(${images.Noto})` : "url('/images/default.jpg')",
-        demo: "https://szymonsamus.dev/noto/",
-        github: "https://github.com/Sizimon/noto-frontend/blob/main/README.md"
-    },
-    {
-        title: "Guruweather",
-        short: "Weather Forecasting App",
-        long: `
+            builtWith: "Typescript, Next.js, Node.js (Express), PostgreSQL",
+            image: images.Noto ? `url(${images.Noto})` : "url('/images/default.jpg')",
+            demo: "https://szymonsamus.dev/noto/",
+            github: "https://github.com/Sizimon/noto-frontend/blob/main/README.md"
+        },
+        {
+            title: "Guruweather",
+            short: "Weather Forecasting App",
+            long: `
         Guruweather is a weather forecasting application that provides real-time weather updates, including temperature, humidity, wind speed, and more.
         It uses a third-party API to fetch weather data and display it in an easy-to-read format with helpful animations.
 
@@ -108,8 +108,9 @@ const Projects = () => {
     return (
         <>
             <section
-                id="projects" 
-                className="w-full px-4 py-8 flex flex-col items-center">
+                id="projects"
+                className="w-full px-4 py-8 flex flex-col items-center justify-center min-h-lvh">
+
                 {/* Header */}
                 <FloatyHeader letters={['P', 'R', 'O', 'J', 'E', 'C', 'T', 'S']} />
 
@@ -127,7 +128,7 @@ const Projects = () => {
                         >
                             <div className="absolute inset-0 bg-black/80" />
                             <div className="relative z-10 p-6 flex flex-col items-center text-white">
-                                <h3 className="text-2xl mb-2 text-pop font-heading uppercase">{project.title}</h3>
+                                <h3 className="text-2xl mb-2 text-pop font-alt font-extralight uppercase">{project.title}</h3>
                                 <p className="mb-4 text-center">{project.short}</p>
                                 <p className="mb-4 text-center text-sm">
                                     {project.long.split('\n').map((line, index) => (
@@ -161,11 +162,11 @@ const Projects = () => {
                 </div>
 
                 {/* Desktop: GSAP expanding banners */}
-                <div className="hidden md:flex w-full max-w-6xl h-[28rem] items-stretch justify-center gap-x-4">
+                <div className="hidden md:flex w-full max-w-6xl 2xl:max-w-[50lvw] h-[28rem] 2xl:h-[48rem] items-stretch justify-center gap-x-4">
                     {projects.map((project, index) => (
                         <div
                             key={index}
-                            ref={element => {bannerRefs.current[index] = element}}
+                            ref={element => { bannerRefs.current[index] = element }}
                             className={`
                             relative flex flex-col justify-center items-center overflow-hidden cursor-default
                             rounded-lg shadow-lg
@@ -178,7 +179,7 @@ const Projects = () => {
                         >
                             {/* Background image layer with GSAP blur */}
                             <div
-                                ref={element => {bgRefs.current[index] = element}}
+                                ref={element => { bgRefs.current[index] = element }}
                                 className="absolute inset-0 transition-all duration-500"
                                 style={{
                                     backgroundImage: project.image,
@@ -191,17 +192,17 @@ const Projects = () => {
                             <div className={`absolute inset-0 transition-all duration-500 ${hovered === index ? "bg-black/70" : "bg-black/60"}`} />
                             {/* Preview content */}
                             <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-                                <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
-                                <p className="text-center">{project.short}</p>
+                                <h3 className="text-2xl 2xl:text-4xl font-semibold mb-2">{project.title}</h3>
+                                <p className="text-center 2xl:text-2xl">{project.short}</p>
                             </div>
                             {/* Detailed view overlay if hovered */}
                             <div
-                                ref={element => {contentRefs.current[index] = element}}
-                                className="absolute inset-0 text-white flex flex-col justify-center items-center p-8 z-20"
+                                ref={element => { contentRefs.current[index] = element }}
+                                className="absolute inset-0 text-white flex flex-col justify-center items-center p-8 2xl:px-32 z-20"
                                 style={{ opacity: 0, pointerEvents: "none", transform: "translateY(40px)" }}
                             >
-                                <h2 className="text-3xl font-heading text-pop uppercase mb-2">{project.title}</h2>
-                                <p className="mb-4">
+                                <h3 className="text-3xl 2xl:text-5xl font-alt font-extralight text-pop uppercase mb-2">{project.title}</h3>
+                                <p className="mb-4 2xl:text-2xl">
                                     {project.long.split('\n').map((line, index) => (
                                         <React.Fragment key={index}>
                                             {line}
@@ -214,7 +215,7 @@ const Projects = () => {
                                         href={project.demo}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-pop/80 hover:bg-pop/90 text-default rounded-full transition cursor-pointer"
+                                        className="px-4 py-2 2xl:text-3xl bg-pop/80 hover:bg-pop/90 text-default rounded-full transition cursor-pointer"
                                     >
                                         Live Demo
                                     </a>
@@ -222,7 +223,7 @@ const Projects = () => {
                                         href={project.github}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-foreground text-default rounded-full hover:bg-foreground/80 transition cursor-pointer"
+                                        className="px-4 py-2 2xl:text-3xl bg-foreground text-default rounded-full hover:bg-foreground/80 transition cursor-pointer"
                                     >
                                         GitHub
                                     </a>
@@ -232,9 +233,6 @@ const Projects = () => {
                     ))}
                 </div>
             </section>
-            <div
-                className='bottom-0 left-0 right-0 h-[60vh] 4k:h-[40vh] bg-gradient-to-b from from-MainDark/0 to-MainDark/100'
-            />
         </>
 
     );
