@@ -7,16 +7,17 @@ import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import { MdConnectWithoutContact } from "react-icons/md";
 
 const NAV_ITEMS = [
-    { icon: <FaRegMehBlank className='w-6 h-6' />, href: "#me", section: "me" },
-    { icon: <GiStack className='w-6 h-6' />, href: "#tech-stack", section: "tech-stack" },
-    { icon: <AiOutlineFundProjectionScreen className='w-6 h-6' />, href: "#projects", section: "projects" },
-    { icon: <MdConnectWithoutContact className='w-6 h-6' />, href: "#contact", section: "contact" }
+    { icon: <FaRegMehBlank className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#me", section: "me", label: "About Me" },
+    { icon: <GiStack className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#tech-stack", section: "tech-stack", label: "Tech Stack" },
+    { icon: <AiOutlineFundProjectionScreen className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#projects", section: "projects", label: "Projects" },
+    { icon: <MdConnectWithoutContact className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#contact", section: "contact", label: "Contact" }
 ]
 
 export const Navigation: React.FC = () => {
     const navRef = useRef<HTMLDivElement | null>(null);
     const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
     const borderRef = useRef<HTMLDivElement | null>(null);
+    const labelRefs = useRef<Array<HTMLSpanElement | null>>([]);
     const [active, setActive] = useState<number>(0);
     console.log(active)
 
@@ -48,14 +49,55 @@ export const Navigation: React.FC = () => {
             const { offsetTop, offsetHeight } = el;
             gsap.to(border, {
                 y: offsetTop,
-                height: offsetHeight,
+                height: offsetHeight + 16,
                 x: 0,
-                width: '100%',
+                width: '0.25rem',
                 duration: 0.35,
                 ease: "power2.out",
             });
         }
     }, [active]);
+
+
+    useEffect(() => {
+    let tl = gsap.timeline();
+
+    const labelEl = labelRefs.current[active];
+    if (labelEl) {
+        const letters = labelEl.querySelectorAll('span');
+        tl.fromTo(
+            letters,
+            { opacity: 0, y: 10 },
+            {
+                opacity: 1,
+                y: 0,
+                stagger: 0.1,
+                duration: 3,
+                ease: "power2.out"
+            }
+        );
+        tl.to(letters, {
+            opacity: 0,
+            y: 10,
+            stagger: 0.1,
+            duration: 1,
+            ease: "power2.out"
+        });
+    }
+    // Fade out previous label
+    return () => {
+        if (labelEl) {
+            const letters = labelEl.querySelectorAll('span');
+            gsap.to(letters, {
+                opacity: 0,
+                y: -10,
+                stagger: 0.03,
+                duration: 0.3,
+                ease: "power2.in"
+            });
+        }
+    };
+}, [active]);
 
     useEffect(() => {
         const sectionIds = NAV_ITEMS.map(item => item.section);
@@ -84,18 +126,16 @@ export const Navigation: React.FC = () => {
     return (
         <nav
             ref={navRef}
-            className="fixed mt-4 left-0 top-1/2 -translate-y-1/2 h-2/4 w-12 p-2 rounded-r-full bg-zinc-700/40 z-40 border-red-100 border-1 backdrop-blur-sm flex flex-col items-center justify-center">
-            <ul className="flex flex-col space-y-4 justify-evenly items-center h-full relative z-50">
-                <div
-                    ref={borderRef}
-                    className="absolute left-0 w-full h-[40px] rounded-full bg-pop shadow-[0_0_8px_2px_oklch(70.4%_0.191_22.216),0_0_24px_4px_oklch(70.4%_0.191_22.216)] transition-all duration-300"
-                    style={{
-                        top: 0,
-                        height: 0,
-                        pointerEvents: "none",
-                        zIndex: 1,
-                    }}
-                />
+            className="fixed mt-4 left-0 top-0 h-2/4 w-10 md:w-12 2xl:w-36 p-2 rounded-r-full bg-zinc-700/40 z-40 backdrop-blur-sm flex flex-col items-center justify-center">
+            <div
+                ref={borderRef}
+                className="absolute right-0 top-0 w-1 rounded-full bg-pop shadow-[0_0_8px_2px_oklch(70.4%_0.191_22.216),0_0_24px_4px_oklch(70.4%_0.191_22.216)] transition-all duration-300"
+                style={{
+                    pointerEvents: "none",
+                    zIndex: 1,
+                }}
+            />
+            <ul className="flex flex-col justify-evenly items-center h-full relative z-50">
                 {NAV_ITEMS.map((item, index) => (
                     <li
                         key={item.href}
@@ -108,6 +148,14 @@ export const Navigation: React.FC = () => {
                         >
                             {item.icon}
                         </span>
+                        {active === index && (
+                            <span
+                                ref={el => { labelRefs.current[index] = el }}
+                                className="text-alt font-extralight text-2xl uppercase absolute left-full ml-4 text-pop whitespace-nowrap"
+                            >{item.label.split(' ').map((word, i) => (
+                                <span key={i} className="inline-block opacity-0">{word}</span>
+                            ))}</span>
+                        )}
                     </li>
                 ))}
             </ul>

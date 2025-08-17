@@ -43,13 +43,13 @@ export const Contact: React.FC = () => {
             <div className="absolute left-0 right-0 top-0 h-32 pointer-events-none z-20 bg-gradient-to-b from-background to-foreground md:h-[200px]" />
 
             {/* Contact form using formsubmit to handle emails */}
-            <form onSubmit={handleSubmit} className="flex flex-col text-default bg-background p-8 rounded-lg shadow-lg w-full max-w-md mx-auto z-30 gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col text-default bg-background p-8 2xl:p-12 rounded-lg 2xl:rounded-2xl shadow-lg w-full 2xl:min-h-4/8 max-w-md 2xl:max-w-4xl z-30 gap-4">
                 {/* Result message */}
                 {result && <p className="text-center">{result}</p>}
-                <h2 className="text-3xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Leave me a message C:</h2>
-                <input type="text" name="name" placeholder="Name" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop" />
-                <input type="email" name="email" placeholder="Email" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop" />
-                <Textarea name="message" minLength={25} placeholder="Your Message" required className="bg-foreground/20 p-2 rounded-2xl text-pop caret-pop" />
+                <h2 className="text-3xl 2xl:text-5xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Contact me!</h2>
+                <input type="text" name="name" placeholder="Name" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop 2xl:text-4xl" />
+                <input type="email" name="email" placeholder="Email" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop 2xl:text-4xl" />
+                <Textarea name="message" minLength={25} placeholder="Your Message" required className="flex-1 bg-foreground/20 p-2 rounded-2xl text-pop caret-pop 2xl:text-4xl" />
 
                 {/* Submit button */}
                 { loading ? (
@@ -57,7 +57,7 @@ export const Contact: React.FC = () => {
                         {<ClipLoader size={20} color="#000000" />}
                     </button>
                 ) : (
-                    <button type="submit" className="bg-pop text-background p-2 rounded-full hover:brightness-110 cursor-pointer transition-all duration-300 ease-in-out">Send</button>
+                    <button type="submit" className="2xl:text-4xl mx-auto w-1/2 bg-pop text-background p-2 rounded-full hover:brightness-110 cursor-pointer transition-all duration-300 ease-in-out">Send</button>
                 )}
             </form>
             {/* Gradient transition at bottom */}
