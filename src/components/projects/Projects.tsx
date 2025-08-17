@@ -128,7 +128,7 @@ const Projects = () => {
                         >
                             <div className="absolute inset-0 bg-black/80" />
                             <div className="relative z-10 p-6 flex flex-col items-center text-white">
-                                <h3 className="text-UWQ mb-2 text-pop font-alt font-extralight uppercase">{project.title}</h3>
+                                <h3 className="text-2xl mb-2 text-pop font-alt font-extralight uppercase">{project.title}</h3>
                                 <p className="mb-4 text-center">{project.short}</p>
                                 <p className="mb-4 text-center text-sm">
                                     {project.long.split('\n').map((line, index) => (
@@ -192,8 +192,8 @@ const Projects = () => {
                             <div className={`absolute inset-0 transition-all duration-500 ${hovered === index ? "bg-black/70" : "bg-black/60"}`} />
                             {/* Preview content */}
                             <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-                                <h3 className="text-UWQ UWQ:text-4xl font-semibold mb-2">{project.title}</h3>
-                                <p className="text-center UWQ:text-UWQ">{project.short}</p>
+                                <h3 className="text-2xl UWQ:text-4xl font-semibold mb-2">{project.title}</h3>
+                                <p className="text-center UWQ:text-2xl">{project.short}</p>
                             </div>
                             {/* Detailed view overlay if hovered */}
                             <div
@@ -202,7 +202,7 @@ const Projects = () => {
                                 style={{ opacity: 0, pointerEvents: "none", transform: "translateY(40px)" }}
                             >
                                 <h3 className="text-3xl UWQ:text-5xl font-alt font-extralight text-pop uppercase mb-2">{project.title}</h3>
-                                <p className="mb-4 UWQ:text-UWQ">
+                                <p className="mb-4 UWQ:text-2xl">
                                     {project.long.split('\n').map((line, index) => (
                                         <React.Fragment key={index}>
                                             {line}

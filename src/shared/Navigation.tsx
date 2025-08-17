@@ -151,7 +151,7 @@ export const Navigation: React.FC = () => {
                         {active === index && (
                             <span
                                 ref={el => { labelRefs.current[index] = el }}
-                                className="text-alt font-extralight text-UWQ uppercase absolute left-full ml-4 text-pop whitespace-nowrap"
+                                className="text-alt font-extralight text-2xl uppercase absolute left-full ml-4 text-pop whitespace-nowrap"
                             >{item.label.split(' ').map((word, i) => (
                                 <span key={i} className="inline-block opacity-0">{word}</span>
                             ))}</span>
