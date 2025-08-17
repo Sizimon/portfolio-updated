@@ -11,8 +11,8 @@ export const ProgressScroll: React.FC = () => {
             if (!scrollRef.current) return;
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Get the distance already scrolled
             const docHeight = document.documentElement.scrollHeight - window.innerHeight; // Get the total scrollable height of the document
-            const progress = (scrollTop / docHeight) * 100;
-            setScrollProgress(progress);
+            const progress = (scrollTop / docHeight) * 100; // Calculate the scroll progress in % (distanceScrolled / totalScrollableHeight) * 100
+            setScrollProgress(progress); // 0 - 100
         };
 
         window.addEventListener('scroll', handleScroll);
