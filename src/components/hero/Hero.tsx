@@ -23,11 +23,11 @@ const Hero = () => {
             </div>
 
             <div className="relative flex flex-col z-50 h-full w-5/6 md:w-4/6  justify-center items-center">
-                <h1 className='font-alt font-extralight uppercase text-2xl md:text-5xl 2xl:text-8xl text-center text-pop'>Szymon Samus</h1>
+                <h1 className='font-alt font-extralight uppercase text-UWQ md:text-5xl UWQ:text-8xl text-center text-pop'>Szymon Samus</h1>
                 <HeroTypewriter text={"Full-Stack Developer"} />
                 <HeroDescription
                     text="Full Stack Developer blending creativity and code to turn concepts into working, impactful apps. Learning fast, building faster."
-                    className="font-alt text-default px-8 md:text-xl 2xl:text-5xl text-center"
+                    className="font-alt text-default px-8 md:text-xl UWQ:text-5xl text-center"
                 />
                 <AlternatingQuotes />
             </div>

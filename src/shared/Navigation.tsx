@@ -7,10 +7,10 @@ import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import { MdConnectWithoutContact } from "react-icons/md";
 
 const NAV_ITEMS = [ // Navigation items for the sidebar (customise at will)
-    { icon: <FaRegMehBlank className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#me", section: "me", label: "About Me" },
-    { icon: <GiStack className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#tech-stack", section: "tech-stack", label: "Tech Stack" },
-    { icon: <AiOutlineFundProjectionScreen className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#projects", section: "projects", label: "Projects" },
-    { icon: <MdConnectWithoutContact className='w-6 h-6 2xl:w-18 2xl:h-18' />, href: "#contact", section: "contact", label: "Contact" }
+    { icon: <FaRegMehBlank className='w-6 h-6 UWQ:w-18 UWQ:h-18' />, href: "#me", section: "me", label: "About Me" },
+    { icon: <GiStack className='w-6 h-6 UWQ:w-18 UWQ:h-18' />, href: "#tech-stack", section: "tech-stack", label: "Tech Stack" },
+    { icon: <AiOutlineFundProjectionScreen className='w-6 h-6 UWQ:w-18 UWQ:h-18' />, href: "#projects", section: "projects", label: "Projects" },
+    { icon: <MdConnectWithoutContact className='w-6 h-6 UWQ:w-18 UWQ:h-18' />, href: "#contact", section: "contact", label: "Contact" }
 ]
 
 export const Navigation: React.FC = () => {
@@ -126,7 +126,7 @@ export const Navigation: React.FC = () => {
     return (
         <nav
             ref={navRef}
-            className="fixed mt-4 left-0 top-1/2 -translate-y-1/2 h-2/4 w-10 md:w-12 2xl:w-36 p-2 rounded-r-full bg-zinc-700/40 z-40 backdrop-blur-sm flex flex-col items-center justify-center">
+            className="fixed mt-4 left-0 top-1/2 -translate-y-1/2 h-2/4 w-10 md:w-12 UWQ:w-36 p-2 rounded-r-full bg-zinc-700/40 z-40 backdrop-blur-sm flex flex-col items-center justify-center">
             <div
                 ref={borderRef}
                 className="absolute right-0 top-0 w-1 rounded-full bg-pop shadow-[0_0_8px_2px_oklch(70.4%_0.191_22.216),0_0_24px_4px_oklch(70.4%_0.191_22.216)] transition-all duration-300"
@@ -151,7 +151,7 @@ export const Navigation: React.FC = () => {
                         {active === index && (
                             <span
                                 ref={el => { labelRefs.current[index] = el }}
-                                className="text-alt font-extralight text-2xl uppercase absolute left-full ml-4 text-pop whitespace-nowrap"
+                                className="text-alt font-extralight text-UWQ uppercase absolute left-full ml-4 text-pop whitespace-nowrap"
                             >{item.label.split(' ').map((word, i) => (
                                 <span key={i} className="inline-block opacity-0">{word}</span>
                             ))}</span>

@@ -71,14 +71,14 @@ const HeroTechStack = () => {
                 className='flex flex-col justify-center w-5/6 md:w-4/6 text-center p-2'>
                 <HeroTechHeader
                     text="My Technologies"
-                    className="font-banner text-default uppercase text-4xl md:text-6xl 2xl:text-9xl tracking-wider pb-10"
+                    className="font-banner text-default uppercase text-4xl md:text-6xl UWQ:text-9xl tracking-wider pb-10"
                 />
                 <div className='grid grid-cols-3 md:grid-cols-6 gap-12'>
                     {ICONS.map((Icon, i) => (
                         <span
                             key={i}
                             ref={el => { iconRefs.current[i] = el; }}
-                            className='flex justify-center items-center text-6xl md:text-7xl 2xl:text-9xl text-default'
+                            className='flex justify-center items-center text-6xl md:text-7xl UWQ:text-9xl text-default'
                             style={{ opacity: 0, transform: 'translateY(40px)' }}
                         >
                             {Icon}
