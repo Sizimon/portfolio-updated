@@ -47,7 +47,7 @@ const HeroTypewriter: React.FC<HeroTypewriterProps> = ({ text }) => {
 
 
     return (
-        <h2 className="font-banner text-default uppercase text-3xl md:text-5xl 2xl:text-9xl text-center tracking-wider mb-8">
+        <h2 className="font-banner text-default uppercase text-3xl md:text-5xl UWQ:text-9xl text-center tracking-wider mb-8">
             {text.split("").map((char, i) => (
                 <span key={i} className="relative inline-block">
                     <span
