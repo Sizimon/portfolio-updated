@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
 
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
@@ -20,27 +21,11 @@
   --text: #F5F5F5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #18181b;
-    --foreground: #232325;
-    --pop: oklch(83.076% 0.22016 128.976);
-    --text: #f7f7f8;
-  }
-}
-
 .light {
   --background: #0D1117;
   --foreground: rgb(155, 161, 162);
   --pop: oklch(70.4% 0.191 22.216);
   --text: #F5F5F5;
-}
-
-.dark {
-  --background: #18181b;
-  --foreground: #232325;
-  --pop: oklch(83.076% 0.22016 128.976);
-  --text: #f7f7f8;
 }
 
 @theme inline {
