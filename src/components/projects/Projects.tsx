@@ -16,7 +16,8 @@ const images = {
 const projects: Array<{
     title: string;
     short: string;
-    long: string;
+    description: string;
+    features: string[];
     builtWith: string;
     image: string;
     demo: string;
@@ -25,26 +26,34 @@ const projects: Array<{
         {
             title: "Grippendor",
             short: "Discord Community Management Bot",
-            long: `
-        Grippendor is a Discord bot designed to help communities create & manage their own Discord servers. 
-        It offers features like role management, event scheduling, game filtering and more. 
-
-        The bot is built with a focus on ease of use and flexibility, allowing server owners to customise it to their needs. 
-        In every way, the bot aims to ease the burden of managing a Discord server, making it more accessible for everyone.
-        `,
-        builtWith: "Javascript, React, Node.js (Discord.js/Express), PostgreSQL",
-        image: images.Grippendor ? `url(${images.Grippendor})` : "url('/images/default.jpg')",
-        demo: "https://szymonsamus.dev/grippendor/",
-        github: "https://github.com/Sizimon/attendance-tracker/blob/main/README.md"
-    },
-    {
-        title: "noto()",
-        short: "Rich Text Editor & Notekeeping App",
-        long: `
-        Noto() is a rich text editor and notekeeping application that allows users to create, edit, and manage notes with advanced formatting options, filtering and categorising. 
-        
-        Future plans include AI integration for summarising and generating content & a clip curating feature for enhanced study flows.
-        `,
+            description: `
+                Built for Discord admins, this bot automates community management with event coordination, RSVP reminders, and intelligent role syncing. 
+                It self-cleans its database when users leave or lose roles, and supports customizable dashboards stored in the cloud.
+            `,
+            features: [
+                "Event creation with RSVP tracking and automatic reminders for attendees",
+                "Role tracking that syncs with the server: users are auto-removed from the database if their primary role is revoked or they leave the server",
+                "Preset & role-based party creation for quick event setups",
+                "Customizable server dashboard (banner & icon uploads stored via Cloudinary)"
+            ],
+            builtWith: "Javascript, React, Node.js (Discord.js/Express), PostgreSQL",
+            image: images.Grippendor ? `url(${images.Grippendor})` : "url('/images/default.jpg')",
+            demo: "https://szymonsamus.dev/bot-dashboard/",
+            github: "https://github.com/Sizimon/attendance-tracker/blob/main/README.md"
+        },
+        {
+            title: "noto()",
+            short: "Rich Text Editor & Notekeeping App",
+            description: `
+                A productivity app built on a custom rich text editor with formatting, embeds, and advanced search. 
+                The backend is optimized for efficiency with reduced server calls and API rate limiting for stability. 
+                Future plans include AI-assisted summarization and integration with "ClipCurator".
+            `,
+            features: [
+                "Rich text editing with advanced formatting options.",
+                "Custom tag creation for better organization",
+                "Filtering and categorizing notes via favorites, tags or search",
+            ],
             builtWith: "Typescript, Next.js, Node.js (Express), PostgreSQL",
             image: images.Noto ? `url(${images.Noto})` : "url('/images/default.jpg')",
             demo: "https://szymonsamus.dev/noto/",
@@ -53,18 +62,22 @@ const projects: Array<{
         {
             title: "Guruweather",
             short: "Weather Forecasting App",
-            long: `
-        Guruweather is a weather forecasting application that provides real-time weather updates, including temperature, humidity, wind speed, and more.
-        It uses a third-party API to fetch weather data and display it in an easy-to-read format with helpful animations.
-
-        The app is designed to be user-friendly and visually appealing, making it easy for users to check the weather at a glance.
-        Future plans include adding features like location-based weather alerts and a more detailed forecast view.`,
-        builtWith: "Javascript, React",
-        image: images.Guruweather ? `url(${images.Guruweather})` : "url('/images/default.jpg')",
-        demo: "https://szymonsamus.dev/guruweather/",
-        github: "https://github.com/Sizimon/guruweather/blob/master/README.md"
-    }
-];
+            description: `
+                This app uses the OpenWeatherMap API to deliver real-time weather data in a clean, mobile-first interface. 
+                It focuses on fast, accurate results with a smooth cross-device experience, with future plans for location alerts and detailed forecasts.
+            `,
+            features: [
+                "Real-time weather updates",
+                "Temperature, humidity, and wind speed with user-friendly animations",
+                "Third-party API integration",
+                "User-friendly design"
+            ],
+            builtWith: "Javascript, React",
+            image: images.Guruweather ? `url(${images.Guruweather})` : "url('/images/default.jpg')",
+            demo: "https://szymonsamus.dev/weather-app/",
+            github: "https://github.com/user/project3"
+        }
+    ];
 
 const Projects = () => {
     const [hovered, setHovered] = useState<number | null>(null);
@@ -99,7 +112,7 @@ const Projects = () => {
                 y: isHovered ? 0 : 40,
                 pointerEvents: isHovered ? "auto" : "none",
                 duration: 0.5,
-                delay: isHovered ? 0.4 : 0,
+                delay: isHovered ? 0.8 : 0,
                 ease: "power3.out"
             });
         });
@@ -130,14 +143,27 @@ const Projects = () => {
                             <div className="relative z-10 p-6 flex flex-col items-center text-white">
                                 <h3 className="text-2xl mb-2 text-pop font-alt font-extralight uppercase">{project.title}</h3>
                                 <p className="mb-4 text-center">{project.short}</p>
-                                <p className="mb-4 text-center text-sm">
-                                    {project.long.split('\n').map((line, index) => (
-                                        <React.Fragment key={index}>
-                                            {line}
-                                            <br />
-                                        </React.Fragment>
-                                    ))}
-                                </p>
+                                <div className='mb-8'>
+                                    <p className="mb-4 text-center text-sm">
+                                        {project.description.split('\n').map((line, index) => (
+                                            <React.Fragment key={index}>
+                                                {line}
+                                                <br />
+                                            </React.Fragment>
+                                        ))}
+                                    </p>
+                                    <h3 className='text-sm text-pop'><em><strong>Key Features:</strong></em></h3>
+                                    {project.features && project.features.length > 0 ? (
+                                        <ul className="list-disc list-inside text-sm">
+                                            {project.features.map((feature, index) => (
+                                                <li key={index}>{feature}</li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <p>No key features available.</p>
+                                    )}
+                                    <h3 className='text-sm text-pop mt-4'><em><strong>Built With: </strong><span className='text-white'>{project.builtWith}</span></em></h3>
+                                </div>
                                 <div className="flex gap-4">
                                     <a
                                         href={project.demo}
@@ -192,24 +218,37 @@ const Projects = () => {
                             <div className={`absolute inset-0 transition-all duration-500 ${hovered === index ? "bg-black/70" : "bg-black/60"}`} />
                             {/* Preview content */}
                             <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-                                <h3 className="text-2xl UWQ:text-4xl font-semibold mb-2">{project.title}</h3>
+                                <h3 className="text-2xl text-pop UWQ:text-4xl font-semibold mb-2">{project.title}</h3>
                                 <p className="text-center UWQ:text-2xl">{project.short}</p>
                             </div>
                             {/* Detailed view overlay if hovered */}
                             <div
                                 ref={element => { contentRefs.current[index] = element }}
-                                className="absolute inset-0 text-white flex flex-col justify-center items-center p-8 UWQ:px-32 z-20"
+                                className="absolute inset-0 text-white flex flex-col justify-center items-center py-8 px-16 UWQ:px-32 z-20"
                                 style={{ opacity: 0, pointerEvents: "none", transform: "translateY(40px)" }}
                             >
                                 <h3 className="text-3xl UWQ:text-5xl font-alt font-extralight text-pop uppercase mb-2">{project.title}</h3>
-                                <p className="mb-4 UWQ:text-2xl">
-                                    {project.long.split('\n').map((line, index) => (
-                                        <React.Fragment key={index}>
-                                            {line}
-                                            <br />
-                                        </React.Fragment>
-                                    ))}
-                                </p>
+                                <div className='mb-8'>
+                                    <p className="text-sm UWQ:text-2xl">
+                                        {project.description.split('\n').map((line, index) => (
+                                            <React.Fragment key={index}>
+                                                {line}
+                                                <br />
+                                            </React.Fragment>
+                                        ))}
+                                    </p>
+                                    <h3 className='text-sm text-pop'><em><strong>Key Features:</strong></em></h3>
+                                    {project.features && project.features.length > 0 ? (
+                                        <ul className="list-disc list-inside text-sm">
+                                            {project.features.map((feature, index) => (
+                                                <li key={index}>{feature}</li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <p>No key features available.</p>
+                                    )}
+                                    <h3 className='text-sm text-pop mt-4'><em><strong>Built With: </strong><span className='text-white'>{project.builtWith}</span></em></h3>
+                                </div>
                                 <div className="flex gap-4">
                                     <a
                                         href={project.demo}
