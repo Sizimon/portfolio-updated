@@ -38,8 +38,8 @@ const projects: Array<{
             ],
             builtWith: "Javascript, React, Node.js (Discord.js/Express), PostgreSQL",
             image: images.Grippendor ? `url(${images.Grippendor})` : "url('/images/default.jpg')",
-            demo: "https://szymonsamus.dev/bot-dashboard/",
-            github: "https://github.com/Sizimon/attendance-tracker/blob/main/README.md"
+            demo: "https://szymonsamus.dev/grippendor/",
+            github: "https://github.com/Sizimon/grippendor-backend/blob/main/README.md"
         },
         {
             title: "noto()",
@@ -74,8 +74,8 @@ const projects: Array<{
             ],
             builtWith: "Javascript, React",
             image: images.Guruweather ? `url(${images.Guruweather})` : "url('/images/default.jpg')",
-            demo: "https://szymonsamus.dev/weather-app/",
-            github: "https://github.com/user/project3"
+            demo: "https://szymonsamus.dev/guruweather/",
+            github: "https://github.com/Sizimon/guruweather/blob/master/README.md"
         }
     ];
 
