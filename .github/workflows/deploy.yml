@@ -39,6 +39,7 @@ jobs:
           echo 'CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}' >> .env &&
           echo 'CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}' >> .env &&
           echo 'CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}' >> .env &&
+          echo 'SECRET_KEY=${{ secrets.JWT_SECRET }}' >> .env &&
           echo 'SECRET_KEY=${{ secrets.SECRET_KEY }}' >> .env &&
           echo 'DB_USER=${{ secrets.DB_USER }}' >> .env &&
           echo 'DB_HOST=${{ secrets.DB_HOST }}' >> .env &&
