@@ -46,7 +46,7 @@ export const AlternatingQuotes: React.FC = () => {
         <div className="relative flex flex-col mt-8 min-h-[2.5em]">
             <div
                 ref={quoteRefs}
-                className="text-pop text-center font-alt text-sm md:text-md UWQ:text-3xl"
+                className="text-pop text-center font-alt text-sm md:text-md uwq:!text-xl italic"
             >
                 "{QUOTES[current]}" - Szymon Samus
             </div>

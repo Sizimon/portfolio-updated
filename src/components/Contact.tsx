@@ -38,18 +38,16 @@ export const Contact: React.FC = () => {
     }
 
     return (
-        <section id="contact" className="relative flex flex-row items-center justify-center mx-auto px-4 h-lvh w-full bg-foreground">
-            {/* Background gradient at top */}
-            <div className="absolute left-0 right-0 top-0 h-32 pointer-events-none z-20 bg-gradient-to-b from-background to-foreground md:h-[200px]" />
+        <section id="contact" className="relative flex flex-row items-center justify-center mx-auto px-4 h-lvh w-full">
 
             {/* Contact form using formsubmit to handle emails */}
-            <form onSubmit={handleSubmit} className="flex flex-col text-default bg-background p-8 UWQ:p-12 rounded-lg UWQ:rounded-UWQ shadow-lg w-full UWQ:min-h-4/8 max-w-md UWQ:max-w-4xl z-30 gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col text-default border-[1px] bg-black/15 border-white/20 backdrop-blur-2xl p-8 uwq:p-12 rounded-lg uwq:rounded-2xl shadow-lg w-full max-w-lg uwq:min-h-4/8 uwq:max-w-4xl z-30 gap-4">
                 {/* Result message */}
                 {result && <p className="text-center">{result}</p>}
-                <h2 className="text-3xl UWQ:text-5xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Contact me!</h2>
-                <input type="text" name="name" placeholder="Name" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop UWQ:text-4xl" />
-                <input type="email" name="email" placeholder="Email" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop UWQ:text-4xl" />
-                <Textarea name="message" minLength={25} placeholder="Your Message" required className="flex-1 bg-foreground/20 p-2 rounded-UWQ text-pop caret-pop UWQ:text-4xl" />
+                <h2 className="text-3xl uwq:!text-4xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Contact me</h2>
+                <input type="text" name="name" placeholder="Name" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop uwq:!text-2xl" />
+                <input type="email" name="email" placeholder="Email" required className="bg-foreground/20 p-2 rounded-full text-pop caret-pop uwq:!text-2xl" />
+                <Textarea name="message" minLength={25} placeholder="Your Message" required className="flex-1 bg-foreground/20 p-2 rounded-2xl text-pop caret-pop uwq:!text-xl" />
 
                 {/* Submit button */}
                 { loading ? (
@@ -57,11 +55,9 @@ export const Contact: React.FC = () => {
                         {<ClipLoader size={20} color="#000000" />}
                     </button>
                 ) : (
-                    <button type="submit" className="UWQ:text-4xl mx-auto w-1/2 bg-pop text-background p-2 rounded-full hover:brightness-110 cursor-pointer transition-all duration-300 ease-in-out">Send</button>
+                    <button type="submit" className="uwq:!text-2xl mx-auto w-1/2 bg-pop text-background p-2 rounded-full hover:brightness-110 cursor-pointer transition-all duration-300 ease-in-out">Send</button>
                 )}
             </form>
-            {/* Gradient transition at bottom */}
-            <div className="absolute left-0 right-0 bottom-0 h-32 pointer-events-none z-20 bg-gradient-to-t from-background to-foreground md:h-[200px]" />
         </section>
     );
 }
