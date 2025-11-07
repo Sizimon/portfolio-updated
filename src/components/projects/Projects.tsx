@@ -122,155 +122,153 @@ const Projects = () => {
         <>
             <section
                 id="projects"
-                className="w-full px-4 py-8 flex flex-col items-center justify-center min-h-lvh">
-
+                className="w-full flex flex-col items-center justify-center min-h-lvh">
                 {/* Header */}
                 <FloatyHeader letters={['P', 'R', 'O', 'J', 'E', 'C', 'T', 'S']} />
-
-                {/* Mobile: vertical cards */}
-                <div className="flex flex-col gap-6 w-full max-w-md md:hidden">
-                    {projects.map((project, index) => (
-                        <div
-                            key={index}
-                            className="relative rounded-lg shadow-lg overflow-hidden"
-                            style={{
-                                backgroundImage: project.image,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                            }}
-                        >
-                            <div className="absolute inset-0 bg-black/80" />
-                            <div className="relative z-10 p-6 flex flex-col items-center text-white">
-                                <h3 className="text-2xl mb-2 text-pop font-alt font-extralight uppercase">{project.title}</h3>
-                                <p className="mb-4 text-center">{project.short}</p>
-                                <div className='mb-8'>
-                                    <p className="mb-4 text-center text-sm">
-                                        {project.description.split('\n').map((line, index) => (
-                                            <React.Fragment key={index}>
-                                                {line}
-                                                <br />
-                                            </React.Fragment>
-                                        ))}
-                                    </p>
-                                    <h3 className='text-sm text-pop'><em><strong>Key Features:</strong></em></h3>
-                                    {project.features && project.features.length > 0 ? (
-                                        <ul className="list-disc list-inside text-sm">
-                                            {project.features.map((feature, index) => (
-                                                <li key={index}>{feature}</li>
+                    {/* Mobile: vertical cards */}
+                    <div className="flex flex-col gap-6 w-full max-w-md md:hidden">
+                        {projects.map((project, index) => (
+                            <div
+                                key={index}
+                                className="relative rounded-lg shadow-lg overflow-hidden"
+                                style={{
+                                    backgroundImage: project.image,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                }}
+                            >
+                                <div className="absolute inset-0 bg-black/80" />
+                                <div className="relative z-10 p-6 flex flex-col items-center text-white">
+                                    <h3 className="text-uwq mb-2 text-pop font-alt font-extralight uppercase">{project.title}</h3>
+                                    <p className="mb-4 text-center">{project.short}</p>
+                                    <div className='mb-8'>
+                                        <p className="mb-4 text-center text-sm">
+                                            {project.description.split('\n').map((line, index) => (
+                                                <React.Fragment key={index}>
+                                                    {line}
+                                                    <br />
+                                                </React.Fragment>
                                             ))}
-                                        </ul>
-                                    ) : (
-                                        <p>No key features available.</p>
-                                    )}
-                                    <h3 className='text-sm text-pop mt-4'><em><strong>Built With: </strong><span className='text-white'>{project.builtWith}</span></em></h3>
-                                </div>
-                                <div className="flex gap-4">
-                                    <a
-                                        href={project.demo}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-pop/80 text-default rounded-full hover:bg-pop/90 transition"
-                                    >
-                                        Live Demo
-                                    </a>
-                                    <a
-                                        href={project.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-foreground text-default rounded-full hover:bg-foreground/80 transition"
-                                    >
-                                        GitHub
-                                    </a>
+                                        </p>
+                                        <h3 className='text-sm text-pop'><em><strong>Key Features:</strong></em></h3>
+                                        {project.features && project.features.length > 0 ? (
+                                            <ul className="list-disc list-inside text-sm">
+                                                {project.features.map((feature, index) => (
+                                                    <li key={index}>{feature}</li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p>No key features available.</p>
+                                        )}
+                                        <h3 className='text-sm text-pop mt-4'><em><strong>Built With: </strong><span className='text-white'>{project.builtWith}</span></em></h3>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <a
+                                            href={project.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-4 py-2 bg-pop/80 text-default rounded-full hover:bg-pop/90 transition"
+                                        >
+                                            Live Demo
+                                        </a>
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-4 py-2 bg-foreground text-default rounded-full hover:bg-foreground/80 transition"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
 
-                {/* Desktop: GSAP expanding banners */}
-                <div className="hidden md:flex w-full max-w-6xl UWQ:max-w-[50lvw] h-[28rem] UWQ:h-[48rem] items-stretch justify-center gap-x-4">
-                    {projects.map((project, index) => (
-                        <div
-                            key={index}
-                            ref={element => { bannerRefs.current[index] = element }}
-                            className={`
+
+                    {/* Desktop: GSAP expanding banners */}
+                    <div className="hidden md:flex w-full max-w-6xl uwq:max-w-[90lvw] h-[32rem] uwq:h-[48rem] items-stretch justify-center gap-x-4">
+                        {projects.map((project, index) => (
+                            <div
+                                key={index}
+                                ref={element => { bannerRefs.current[index] = element }}
+                                className={`
                             relative flex flex-col justify-center items-center overflow-hidden cursor-default
                             rounded-lg shadow-lg
                             transition-all duration-500
                             flex-1 basis-0 min-w-0
                         `}
-                            style={{ minWidth: 0 }}
-                            onMouseEnter={() => setHovered(index)}
-                            onMouseLeave={() => setHovered(null)}
-                        >
-                            {/* Background image layer with GSAP blur */}
-                            <div
-                                ref={element => { bgRefs.current[index] = element }}
-                                className="absolute inset-0 transition-all duration-500"
-                                style={{
-                                    backgroundImage: project.image,
-                                    backgroundSize: 'cover',
-                                    backgroundPosition: 'center',
-                                    zIndex: 0,
-                                }}
-                            />
-                            {/* Overlay for preview which darkens image if not hovered */}
-                            <div className={`absolute inset-0 transition-all duration-500 ${hovered === index ? "bg-black/70" : "bg-black/60"}`} />
-                            {/* Preview content */}
-                            <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-                                <h3 className="text-2xl text-pop UWQ:text-4xl font-semibold mb-2">{project.title}</h3>
-                                <p className="text-center UWQ:text-2xl">{project.short}</p>
-                            </div>
-                            {/* Detailed view overlay if hovered */}
-                            <div
-                                ref={element => { contentRefs.current[index] = element }}
-                                className="absolute inset-0 text-white flex flex-col justify-center items-center py-8 px-16 UWQ:px-32 z-20"
-                                style={{ opacity: 0, pointerEvents: "none", transform: "translateY(40px)" }}
+                                style={{ minWidth: 0 }}
+                                onMouseEnter={() => setHovered(index)}
+                                onMouseLeave={() => setHovered(null)}
                             >
-                                <h3 className="text-3xl UWQ:text-5xl font-alt font-extralight text-pop uppercase mb-2">{project.title}</h3>
-                                <div className='mb-8'>
-                                    <p className="text-sm UWQ:text-2xl">
-                                        {project.description.split('\n').map((line, index) => (
-                                            <React.Fragment key={index}>
-                                                {line}
-                                                <br />
-                                            </React.Fragment>
-                                        ))}
-                                    </p>
-                                    <h3 className='text-sm text-pop'><em><strong>Key Features:</strong></em></h3>
-                                    {project.features && project.features.length > 0 ? (
-                                        <ul className="list-disc list-inside text-sm">
-                                            {project.features.map((feature, index) => (
-                                                <li key={index}>{feature}</li>
-                                            ))}
-                                        </ul>
-                                    ) : (
-                                        <p>No key features available.</p>
-                                    )}
-                                    <h3 className='text-sm text-pop mt-4'><em><strong>Built With: </strong><span className='text-white'>{project.builtWith}</span></em></h3>
+                                {/* Background image layer with GSAP blur */}
+                                <div
+                                    ref={element => { bgRefs.current[index] = element }}
+                                    className="absolute inset-0 transition-all duration-500"
+                                    style={{
+                                        backgroundImage: project.image,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        zIndex: 0,
+                                    }}
+                                />
+                                {/* Overlay for preview which darkens image if not hovered */}
+                                <div className={`absolute inset-0 transition-all duration-500 ${hovered === index ? "bg-black/70" : "bg-black/60 backdrop-blur-2xl"}`} />
+                                {/* Preview content */}
+                                <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+                                    <p className="text-center uwq:!text-3xl">{project.short}</p>
                                 </div>
-                                <div className="flex gap-4">
-                                    <a
-                                        href={project.demo}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-4 py-2 UWQ:text-3xl bg-pop/80 hover:bg-pop/90 text-default rounded-full transition cursor-pointer"
-                                    >
-                                        Live Demo
-                                    </a>
-                                    <a
-                                        href={project.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-4 py-2 UWQ:text-3xl bg-foreground text-default rounded-full hover:bg-foreground/80 transition cursor-pointer"
-                                    >
-                                        GitHub
-                                    </a>
+                                {/* Detailed view overlay if hovered */}
+                                <div
+                                    ref={element => { contentRefs.current[index] = element }}
+                                    className="absolute inset-0 text-white flex flex-col justify-center items-center py-8 px-16 uwq:px-32 z-20"
+                                    style={{ opacity: 0, pointerEvents: "none", transform: "translateY(40px)" }}
+                                >
+                                    <h3 className="text-3xl uwq:!text-5xl font-alt font-extralight text-pop uppercase mb-2">{project.title}</h3>
+                                    <div className='mb-8'>
+                                        <p className="text-sm uwq:!text-xl">
+                                            {project.description.split('\n').map((line, index) => (
+                                                <React.Fragment key={index}>
+                                                    {line}
+                                                    <br />
+                                                </React.Fragment>
+                                            ))}
+                                        </p>
+                                        <h3 className='text-sm text-pop uwq:!text-2xl'><em><strong>Key Features:</strong></em></h3>
+                                        {project.features && project.features.length > 0 ? (
+                                            <ul className="list-disc list-inside text-sm uwq:!text-xl">
+                                                {project.features.map((feature, index) => (
+                                                    <li key={index}>{feature}</li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p>No key features available.</p>
+                                        )}
+                                        <h3 className='text-sm uwq:!text-2xl text-pop mt-4'><em><strong>Built With: </strong><span className='text-white'>{project.builtWith}</span></em></h3>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <a
+                                            href={project.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-4 py-2 uwq:!text-xl bg-pop/80 hover:bg-pop/90 text-default rounded-full transition cursor-pointer"
+                                        >
+                                            Live Demo
+                                        </a>
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-4 py-2 uwq:!text-xl bg-foreground text-default rounded-full hover:bg-foreground/80 transition cursor-pointer"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
             </section>
         </>
 

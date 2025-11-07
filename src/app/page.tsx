@@ -6,14 +6,16 @@ import Projects from '@/components/projects/Projects';
 import { Contact } from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { ProgressScroll } from '@/shared/ProgressScroll';
+import { BackgroundVideo } from '@/components/BackgroundVideo';
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center px-4 uwq:px-32">
       <ProgressScroll />
+      <BackgroundVideo />
       <Hero />
-      <TechStack />
       <Projects />
+      <TechStack />
       <Contact />
       <Footer />
     </div>
