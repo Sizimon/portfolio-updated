@@ -42,6 +42,24 @@ const projects: Array<{
             github: "https://github.com/Sizimon/grippendor-backend/blob/main/README.md"
         },
         {
+            title: "Oktzy",
+            short: "Video Library & Timestamp Manager",
+            description: `
+                Oktzy is a video library app that lets users save videos with custom timestamps and notes for easy reference. 
+                It features a clean, responsive design and plans to integrate AI for automatic timestamp suggestions and summaries.
+            `,
+            features: [
+                "Add videos with custom timestamps and notes for easy reference",
+                "Save & delete videos into or from your personal library",
+                "Easy timestamp navigation within videos",
+                "Simple, responsive design for cross-device use"
+            ],
+            builtWith: "Typescript, Next.js, Node.js (Discord.js/Express), PostgreSQL",
+            image: images.Grippendor ? `url(${images.Grippendor})` : "url('/images/default.jpg')",
+            demo: "https://oktzy.com",
+            github: "https://github.com/Sizimon/oktzy/blob/main/README.md"
+        },
+        {
             title: "noto()",
             short: "Rich Text Editor & Notekeeping App",
             description: `
@@ -76,7 +94,7 @@ const projects: Array<{
             image: images.Guruweather ? `url(${images.Guruweather})` : "url('/images/default.jpg')",
             demo: "https://szymonsamus.dev/guruweather/",
             github: "https://github.com/Sizimon/guruweather/blob/master/README.md"
-        }
+        },
     ];
 
 const Projects = () => {
@@ -122,7 +140,7 @@ const Projects = () => {
         <>
             <section
                 id="projects"
-                className="w-full flex flex-col items-center justify-center min-h-lvh">
+                className="w-full flex flex-col items-center justify-center min-h-lvh bg-white/50 z-50 px-4 md:px-0 pb-4 md:pb-0">
                 {/* Header */}
                 <FloatyHeader letters={['P', 'R', 'O', 'J', 'E', 'C', 'T', 'S']} />
                     {/* Mobile: vertical cards */}

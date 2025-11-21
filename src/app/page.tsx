@@ -10,7 +10,7 @@ import { BackgroundVideo } from '@/components/BackgroundVideo';
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center px-4 uwq:px-32">
+    <div className="flex flex-col items-center">
       <ProgressScroll />
       <BackgroundVideo />
       <Hero />
