@@ -38,10 +38,10 @@ export const Contact: React.FC = () => {
     }
 
     return (
-        <section id="contact" className="relative flex flex-row items-center justify-center mx-auto px-4 md:px-0 h-lvh w-full bg-white/50 z-50">
+        <section id="contact" className="relative flex flex-row items-center justify-center mx-auto px-4 md:px-0 h-lvh w-full z-50">
 
             {/* Contact form using formsubmit to handle emails */}
-            <form onSubmit={handleSubmit} className="flex flex-col text-default border-[1px] bg-black border-white/20 backdrop-blur-2xl p-8 uwq:p-12 rounded-lg uwq:rounded-2xl shadow-lg w-full max-w-lg uwq:min-h-4/8 uwq:max-w-4xl z-30 gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col text-default border-[1px] bg-black/15 border-white/20 backdrop-blur-2xl p-8 uwq:p-12 rounded-lg uwq:rounded-2xl shadow-lg w-full max-w-lg uwq:min-h-4/8 uwq:max-w-4xl z-30 gap-4">
                 {/* Result message */}
                 {result && <p className="text-center">{result}</p>}
                 <h2 className="text-3xl uwq:!text-4xl mb-4 justify-center text-center font-alt font-light uppercase text-pop">Contact me</h2>

@@ -2,10 +2,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import FloatyHeader from '../../shared/FloatyHeader';
 import { projects } from '@/assets/projectList';
 
-const Projects = () => {
+const ExampleAnimationCards = () => {
     const [hovered, setHovered] = useState<number | null>(null);
     const bannerRefs = useRef<(HTMLDivElement | null)[]>([]);
     const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -48,9 +47,7 @@ const Projects = () => {
         <>
             <section
                 id="projects"
-                className="w-full flex flex-col items-center justify-center min-h-lvh z-50 px-4 md:px-0 pb-4 md:pb-0">
-                {/* Header */}
-                <FloatyHeader letters={['P', 'R', 'O', 'J', 'E', 'C', 'T', 'S']} />
+                className="w-full flex flex-col items-center justify-center min-h-lvh bg-sky-950/80 z-50 px-4 md:px-0 pb-4 md:pb-0">
                 {/* Mobile: vertical cards */}
                 <div className="flex flex-col gap-6 w-full max-w-md md:hidden">
                     {projects.map((project, index) => (
@@ -101,58 +98,57 @@ const Projects = () => {
                 </div>
 
 
-                {/* Desktop: 2-column 3D cards */}
-                <div className="hidden md:grid grid-cols-2 gap-8 w-full max-w-6xl UWQ:max-w-[80lvw] px-8">
+                {/* Desktop: GSAP expanding banners */}
+                <div className="hidden md:flex w-full max-w-6xl uwq:max-w-[90lvw] h-[32rem] uwq:h-[48rem] items-stretch justify-center gap-x-4">
                     {projects.map((project, index) => (
                         <div
                             key={index}
-                            className="group relative h-80 rounded-2xl overflow-hidden cursor-pointer transform-gpu transition-all duration-700 ease-out hover:scale-105 hover:z-20 shadow-2xl"
-                            style={{
-                                transformStyle: 'preserve-3d',
-                                perspective: '1000px',
-                            }}
+                            ref={element => { bannerRefs.current[index] = element }}
+                            className={`
+                            relative flex flex-col justify-center items-center overflow-hidden cursor-default
+                            rounded-lg shadow-lg
+                            transition-all duration-500
+                            flex-1 basis-0 min-w-0
+                        `}
+                            style={{ minWidth: 0 }}
+                            onMouseEnter={() => setHovered(index)}
+                            onMouseLeave={() => setHovered(null)}
                         >
-                            {/* Background Image */}
-                            <div 
-                                className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110 group-hover:brightness-40"
+                            {/* Background image layer with GSAP blur */}
+                            <div
+                                ref={element => { bgRefs.current[index] = element }}
+                                className="absolute inset-0 transition-all duration-500"
                                 style={{
                                     backgroundImage: project.image,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    zIndex: 0,
                                 }}
                             />
-
-                            {/* Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 transition-all duration-500 group-hover:from-black/85 group-hover:via-black/30" />
-
-                            {/* Content */}
-                            <div className="relative z-20 h-full flex flex-col justify-end p-8 text-white">
-                                <div className="transform transition-all duration-500 group-hover:translate-y-[-8px]">
-                                    {/* Title */}
-                                    <h3 className="text-3xl UWQ:text-4xl mb-4 text-pop font-alt font-light uppercase tracking-wider leading-tight group-hover:text-white transition-colors duration-300">
-                                        {project.title}
-                                    </h3>
-                                    
-                                    {/* Short Description */}
-                                    <p className="text-base UWQ:text-lg mb-6 opacity-90 group-hover:opacity-100 transition-opacity duration-300 leading-relaxed max-w-sm">
-                                        {project.short}
-                                    </p>
-                                    
-                                    {/* Read More Button */}
-                                    <div className="transform translate-y-2 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                                        <button className="inline-flex items-center gap-2 px-6 py-3 bg-pop/90 hover:bg-pop text-default font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pop/20">
-                                            <span>Read More</span>
-                                            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </button>
-                                    </div>
+                            {/* Overlay for preview which darkens image if not hovered */}
+                            <div className={`absolute inset-0 transition-all duration-500 ${hovered === index ? "bg-black/70" : "bg-black/60 backdrop-blur-2xl"}`} />
+                            {/* Preview content */}
+                            <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+                                <p className="text-center uwq:!text-3xl">{project.short}</p>
+                            </div>
+                            {/* Detailed view overlay if hovered */}
+                            <div
+                                ref={element => { contentRefs.current[index] = element }}
+                                className="absolute inset-0 text-white flex flex-col justify-center items-center py-8 px-16 uwq:px-32 z-20"
+                                style={{ opacity: 0, pointerEvents: "none", transform: "translateY(40px)" }}
+                            >
+                                <div className='mb-2 text-center'>
+                                    <h3 className="text-3xl uwq:!text-5xl font-alt font-extralight text-pop uppercase">{project.title}</h3>
+                                    <p>{project.short}</p>
+                                </div>
+                                <div className="flex gap-4">
+                                    <button
+                                        className="px-4 py-2 bg-pop text-default rounded-full hover:bg-pop/80 transition cursor-pointer"
+                                    >
+                                        Read More
+                                    </button>
                                 </div>
                             </div>
-
-                            {/* Enhanced 3D Shadow Effect */}
-                            <div className="absolute -inset-6 bg-gradient-to-br from-pop/20 via-sky-500/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10 blur-2xl transform group-hover:scale-110"></div>
-                            
-                            {/* Subtle Border Glow */}
-                            <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-pop/30 transition-colors duration-500 pointer-events-none"></div>
                         </div>
                     ))}
                 </div>
@@ -162,4 +158,4 @@ const Projects = () => {
     );
 };
 
-export default Projects;
+export default ExampleAnimationCards;
