@@ -5,11 +5,15 @@ import gsap from 'gsap';
 import FloatyHeader from '../../shared/FloatyHeader';
 import { projects } from '@/assets/projectList';
 
-const Projects = () => {
+const Projects = ({ setModal } : { setModal: React.Dispatch<React.SetStateAction<number>> }) => {
     const [hovered, setHovered] = useState<number | null>(null);
     const bannerRefs = useRef<(HTMLDivElement | null)[]>([]);
     const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
     const bgRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    const handleReadMore = (index: number) => {
+        setModal(index + 1);
+    };
 
     // Animate banners with GSAP
     useEffect(() => {
@@ -51,51 +55,49 @@ const Projects = () => {
                 className="w-full flex flex-col items-center justify-center min-h-lvh z-50 px-4 md:px-0 pb-4 md:pb-0">
                 {/* Header */}
                 <FloatyHeader letters={['P', 'R', 'O', 'J', 'E', 'C', 'T', 'S']} />
-                {/* Mobile: vertical cards */}
+                {/* Mobile: Clean vertical cards */}
                 <div className="flex flex-col gap-6 w-full max-w-md md:hidden">
                     {projects.map((project, index) => (
                         <div
                             key={index}
-                            className="relative rounded-lg shadow-lg overflow-hidden"
-                            style={{
-                                backgroundImage: project.image,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                            }}
+                            className="relative h-80 rounded-2xl overflow-hidden shadow-2xl active:scale-95 transition-transform duration-300"
                         >
-                            <div className="absolute inset-0 bg-black/80" />
-                            <div className="relative z-10 p-6 flex flex-col items-center text-white">
-                                <h3 className="text-uwq mb-2 text-pop font-alt font-extralight uppercase">{project.title}</h3>
-                                <p className="mb-4 text-center">{project.short}</p>
-                                <div className='mb-8'>
-                                    <p className="mb-4 text-center text-sm">
-                                        {project.description.split('\n').map((line, index) => (
-                                            <React.Fragment key={index}>
-                                                {line}
-                                                <br />
-                                            </React.Fragment>
-                                        ))}
-                                    </p>
-                                    <h3 className='text-sm text-pop'><em><strong>Key Features:</strong></em></h3>
-                                    {project.features && project.features.length > 0 ? (
-                                        <ul className="list-disc list-inside text-sm">
-                                            {project.features.map((feature, index) => (
-                                                <li key={index}>{feature}</li>
-                                            ))}
-                                        </ul>
-                                    ) : (
-                                        <p>No key features available.</p>
-                                    )}
-                                    <h3 className='text-sm text-pop mt-4'><em><strong>Techstack: </strong><span className='text-white'>{project.techstack}</span></em></h3>
-                                </div>
-                                <div className="flex gap-4">
-                                    <button
-                                        className="px-4 py-2 bg-pop text-default rounded-full hover:bg-foreground/80 transition"
-                                    >
-                                        Read More
+                            {/* Background Image */}
+                            <div 
+                                className="absolute inset-0 z-0 bg-cover bg-center brightness-50"
+                                style={{
+                                    backgroundImage: project.image,
+                                }}
+                            />
+
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
+
+                            {/* Content */}
+                            <div className="relative z-20 h-full flex flex-col justify-end p-6 text-white">
+                                {/* Title */}
+                                <h3 className="text-2xl mb-3 text-pop font-alt font-light uppercase tracking-wider leading-tight">
+                                    {project.title}
+                                </h3>
+                                
+                                {/* Short Description */}
+                                <p className="text-sm mb-6 opacity-90 leading-relaxed">
+                                    {project.short}
+                                </p>
+                                
+                                {/* Read More Button */}
+                                <div>
+                                    <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-pop/90 text-default font-medium rounded-full active:scale-95 transition-all duration-300 shadow-lg">
+                                        <span>Read More</span>
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
                                     </button>
                                 </div>
                             </div>
+
+                            {/* Subtle Border */}
+                            <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none"></div>
                         </div>
                     ))}
                 </div>
@@ -138,7 +140,9 @@ const Projects = () => {
                                     
                                     {/* Read More Button */}
                                     <div className="transform translate-y-2 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                                        <button className="inline-flex items-center gap-2 px-6 py-3 bg-pop/90 hover:bg-pop text-default font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pop/20">
+                                        <button
+                                        onClick={() => handleReadMore(index)}
+                                        className="inline-flex items-center gap-2 px-6 py-3 bg-pop/90 hover:bg-pop text-default font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pop/20">
                                             <span>Read More</span>
                                             <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
