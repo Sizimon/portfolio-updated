@@ -71,10 +71,10 @@ const Modal: React.FC<{ isOpen: number; onClose: () => void; }> = ({ isOpen, onC
                                 </div>
                             </div>
                             <div className='flex flex-row justify-center gap-4'>
-                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className='inline-block mt-2 px-6 py-3 bg-pop/90 hover:bg-pop text-default font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pop/20'>
+                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className='inline-block mt-2 px-4 py-2 bg-pop/90 hover:bg-pop text-default font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pop/20'>
                                     View Live Demo
                                 </a>
-                                <a href={project.github} target="_blank" rel="noopener noreferrer" className='inline-block mt-2 px-6 py-3 bg-zinc-700/90 border-[1px] border-zinc-700 hover:border-pop text-default font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pop/20'>
+                                <a href={project.github} target="_blank" rel="noopener noreferrer" className='inline-block mt-2 px-4 py-2 bg-zinc-700/90 border-[1px] border-zinc-700 hover:border-pop text-default font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pop/20'>
                                     View Source Code
                                 </a>
                             </div>

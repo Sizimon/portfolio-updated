@@ -87,7 +87,9 @@ const Projects = ({ setModal } : { setModal: React.Dispatch<React.SetStateAction
                                 
                                 {/* Read More Button */}
                                 <div>
-                                    <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-pop/90 text-default font-medium rounded-full active:scale-95 transition-all duration-300 shadow-lg">
+                                    <button 
+                                        onClick={() => handleReadMore(index)}
+                                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-pop/90 text-default font-medium rounded-full active:scale-95 transition-all duration-300 shadow-lg">
                                         <span>Read More</span>
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
