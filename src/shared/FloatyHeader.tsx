@@ -56,7 +56,7 @@ const FloatyHeader: React.FC<FloatyHeaderProps> = ({ letters }) => {
                     <span
                         key={i}
                         ref={el => {letterRefs.current[i] = el}}
-                        className="text-pop font-extralight text-4xl md:text-7xl uwq:!text-8xl font-alt inline-block"
+                        className="text-pop font-normal text-4xl md:text-7xl uwq:!text-8xl font-alt inline-block"
                         style={{ opacity: 0, display: 'inline-block' }}
                     >
                         {letter}

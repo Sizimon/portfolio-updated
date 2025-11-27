@@ -3,87 +3,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import FloatyHeader from '../../shared/FloatyHeader';
-import Grippendor from '@/assets/grippendor.png';
-import Noto from '@/assets/noto.png';
-import Guruweather from '@/assets/guruweather.png';
+import { projects } from '@/assets/projectList';
 
-const images = {
-    Grippendor: Grippendor.src,
-    Noto: Noto.src,
-    Guruweather: Guruweather.src,
-};
-
-const projects: Array<{
-    title: string;
-    short: string;
-    description: string;
-    features: string[];
-    builtWith: string;
-    image: string;
-    demo: string;
-    github: string;
-}> = [
-        {
-            title: "Grippendor",
-            short: "Discord Community Management Bot",
-            description: `
-                Built for Discord admins, this bot automates community management with event coordination, RSVP reminders, and intelligent role syncing. 
-                It self-cleans its database when users leave or lose roles, and supports customizable dashboards stored in the cloud.
-            `,
-            features: [
-                "Event creation with RSVP tracking and automatic reminders for attendees",
-                "Role tracking that syncs with the server: users are auto-removed from the database if their primary role is revoked or they leave the server",
-                "Preset & role-based party creation for quick event setups",
-                "Customizable server dashboard (banner & icon uploads stored via Cloudinary)"
-            ],
-            builtWith: "Javascript, React, Node.js (Discord.js/Express), PostgreSQL",
-            image: images.Grippendor ? `url(${images.Grippendor})` : "url('/images/default.jpg')",
-            demo: "https://szymonsamus.dev/grippendor/",
-            github: "https://github.com/Sizimon/grippendor-backend/blob/main/README.md"
-        },
-        {
-            title: "noto()",
-            short: "Rich Text Editor & Notekeeping App",
-            description: `
-                A productivity app built on a custom rich text editor with formatting, embeds, and advanced search. 
-                The backend is optimized for efficiency with reduced server calls and API rate limiting for stability. 
-                Future plans include AI-assisted summarization and integration with "ClipCurator".
-            `,
-            features: [
-                "Rich text editing with advanced formatting options.",
-                "Custom tag creation for better organization",
-                "Filtering and categorizing notes via favorites, tags or search",
-            ],
-            builtWith: "Typescript, Next.js, Node.js (Express), PostgreSQL",
-            image: images.Noto ? `url(${images.Noto})` : "url('/images/default.jpg')",
-            demo: "https://szymonsamus.dev/noto/",
-            github: "https://github.com/Sizimon/noto-frontend/blob/main/README.md"
-        },
-        {
-            title: "Guruweather",
-            short: "Weather Forecasting App",
-            description: `
-                This app uses the OpenWeatherMap API to deliver real-time weather data in a clean, mobile-first interface. 
-                It focuses on fast, accurate results with a smooth cross-device experience, with future plans for location alerts and detailed forecasts.
-            `,
-            features: [
-                "Real-time weather updates",
-                "Temperature, humidity, and wind speed with user-friendly animations",
-                "Third-party API integration",
-                "User-friendly design"
-            ],
-            builtWith: "Javascript, React",
-            image: images.Guruweather ? `url(${images.Guruweather})` : "url('/images/default.jpg')",
-            demo: "https://szymonsamus.dev/guruweather/",
-            github: "https://github.com/Sizimon/guruweather/blob/master/README.md"
-        }
-    ];
-
-const Projects = () => {
+const Projects = ({ setModal } : { setModal: React.Dispatch<React.SetStateAction<number>> }) => {
     const [hovered, setHovered] = useState<number | null>(null);
     const bannerRefs = useRef<(HTMLDivElement | null)[]>([]);
     const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
     const bgRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    const handleReadMore = (index: number) => {
+        setModal(index + 1);
+    };
 
     // Animate banners with GSAP
     useEffect(() => {
@@ -122,153 +52,116 @@ const Projects = () => {
         <>
             <section
                 id="projects"
-                className="w-full flex flex-col items-center justify-center min-h-lvh">
+                className="w-full flex flex-col items-center justify-center min-h-lvh z-50 px-4 md:px-0 pb-4 md:pb-0">
                 {/* Header */}
                 <FloatyHeader letters={['P', 'R', 'O', 'J', 'E', 'C', 'T', 'S']} />
-                    {/* Mobile: vertical cards */}
-                    <div className="flex flex-col gap-6 w-full max-w-md md:hidden">
-                        {projects.map((project, index) => (
-                            <div
-                                key={index}
-                                className="relative rounded-lg shadow-lg overflow-hidden"
+                {/* Mobile: Clean vertical cards */}
+                <div className="flex flex-col gap-6 w-full max-w-md md:hidden">
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="relative h-80 rounded-2xl overflow-hidden shadow-2xl active:scale-95 transition-transform duration-300"
+                        >
+                            {/* Background Image */}
+                            <div 
+                                className="absolute inset-0 z-0 bg-cover bg-center brightness-50"
                                 style={{
                                     backgroundImage: project.image,
-                                    backgroundSize: 'cover',
-                                    backgroundPosition: 'center',
                                 }}
-                            >
-                                <div className="absolute inset-0 bg-black/80" />
-                                <div className="relative z-10 p-6 flex flex-col items-center text-white">
-                                    <h3 className="text-uwq mb-2 text-pop font-alt font-extralight uppercase">{project.title}</h3>
-                                    <p className="mb-4 text-center">{project.short}</p>
-                                    <div className='mb-8'>
-                                        <p className="mb-4 text-center text-sm">
-                                            {project.description.split('\n').map((line, index) => (
-                                                <React.Fragment key={index}>
-                                                    {line}
-                                                    <br />
-                                                </React.Fragment>
-                                            ))}
-                                        </p>
-                                        <h3 className='text-sm text-pop'><em><strong>Key Features:</strong></em></h3>
-                                        {project.features && project.features.length > 0 ? (
-                                            <ul className="list-disc list-inside text-sm">
-                                                {project.features.map((feature, index) => (
-                                                    <li key={index}>{feature}</li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            <p>No key features available.</p>
-                                        )}
-                                        <h3 className='text-sm text-pop mt-4'><em><strong>Built With: </strong><span className='text-white'>{project.builtWith}</span></em></h3>
-                                    </div>
-                                    <div className="flex gap-4">
-                                        <a
-                                            href={project.demo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 bg-pop/80 text-default rounded-full hover:bg-pop/90 transition"
-                                        >
-                                            Live Demo
-                                        </a>
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 bg-foreground text-default rounded-full hover:bg-foreground/80 transition"
-                                        >
-                                            GitHub
-                                        </a>
+                            />
+
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
+
+                            {/* Content */}
+                            <div className="relative z-20 h-full flex flex-col justify-end p-6 text-white">
+                                {/* Title */}
+                                <h3 className="text-2xl mb-3 text-pop font-alt font-light uppercase tracking-wider leading-tight">
+                                    {project.title}
+                                </h3>
+                                
+                                {/* Short Description */}
+                                <p className="text-sm mb-6 opacity-90 leading-relaxed">
+                                    {project.short}
+                                </p>
+                                
+                                {/* Read More Button */}
+                                <div>
+                                    <button 
+                                        onClick={() => handleReadMore(index)}
+                                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-pop/90 text-default font-medium rounded-full active:scale-95 transition-all duration-300 shadow-lg">
+                                        <span>Read More</span>
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Subtle Border */}
+                            <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none"></div>
+                        </div>
+                    ))}
+                </div>
+
+
+                {/* Desktop: 2-column 3D cards */}
+                <div className="hidden md:grid grid-cols-2 gap-8 w-full max-w-6xl UWQ:max-w-[80lvw] px-8">
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="group relative h-80 rounded-2xl overflow-hidden cursor-pointer transform-gpu transition-all duration-700 ease-out hover:scale-105 hover:z-20 shadow-2xl"
+                            style={{
+                                transformStyle: 'preserve-3d',
+                                perspective: '1000px',
+                            }}
+                        >
+                            {/* Background Image */}
+                            <div 
+                                className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110 group-hover:brightness-40"
+                                style={{
+                                    backgroundImage: project.image,
+                                }}
+                            />
+
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 transition-all duration-500 group-hover:from-black/85 group-hover:via-black/30" />
+
+                            {/* Content */}
+                            <div className="relative z-20 h-full flex flex-col justify-end p-8 text-white">
+                                <div className="transform transition-all duration-500 group-hover:translate-y-[-8px]">
+                                    {/* Title */}
+                                    <h3 className="text-3xl UWQ:text-4xl mb-4 text-pop font-alt font-light uppercase tracking-wider leading-tight group-hover:text-white transition-colors duration-300">
+                                        {project.title}
+                                    </h3>
+                                    
+                                    {/* Short Description */}
+                                    <p className="text-base UWQ:text-lg mb-6 opacity-90 group-hover:opacity-100 transition-opacity duration-300 leading-relaxed max-w-sm">
+                                        {project.short}
+                                    </p>
+                                    
+                                    {/* Read More Button */}
+                                    <div className="transform translate-y-2 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+                                        <button
+                                        onClick={() => handleReadMore(index)}
+                                        className="inline-flex items-center gap-2 px-6 py-3 bg-pop/90 hover:bg-pop text-default font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pop/20">
+                                            <span>Read More</span>
+                                            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
 
-
-                    {/* Desktop: GSAP expanding banners */}
-                    <div className="hidden md:flex w-full max-w-6xl uwq:max-w-[90lvw] h-[32rem] uwq:h-[48rem] items-stretch justify-center gap-x-4">
-                        {projects.map((project, index) => (
-                            <div
-                                key={index}
-                                ref={element => { bannerRefs.current[index] = element }}
-                                className={`
-                            relative flex flex-col justify-center items-center overflow-hidden cursor-default
-                            rounded-lg shadow-lg
-                            transition-all duration-500
-                            flex-1 basis-0 min-w-0
-                        `}
-                                style={{ minWidth: 0 }}
-                                onMouseEnter={() => setHovered(index)}
-                                onMouseLeave={() => setHovered(null)}
-                            >
-                                {/* Background image layer with GSAP blur */}
-                                <div
-                                    ref={element => { bgRefs.current[index] = element }}
-                                    className="absolute inset-0 transition-all duration-500"
-                                    style={{
-                                        backgroundImage: project.image,
-                                        backgroundSize: 'cover',
-                                        backgroundPosition: 'center',
-                                        zIndex: 0,
-                                    }}
-                                />
-                                {/* Overlay for preview which darkens image if not hovered */}
-                                <div className={`absolute inset-0 transition-all duration-500 ${hovered === index ? "bg-black/70" : "bg-black/60 backdrop-blur-2xl"}`} />
-                                {/* Preview content */}
-                                <div className={`relative z-10 flex flex-col justify-center items-center h-full text-white px-4 ${hovered === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-                                    <p className="text-center uwq:!text-3xl">{project.short}</p>
-                                </div>
-                                {/* Detailed view overlay if hovered */}
-                                <div
-                                    ref={element => { contentRefs.current[index] = element }}
-                                    className="absolute inset-0 text-white flex flex-col justify-center items-center py-8 px-16 uwq:px-32 z-20"
-                                    style={{ opacity: 0, pointerEvents: "none", transform: "translateY(40px)" }}
-                                >
-                                    <h3 className="text-3xl uwq:!text-5xl font-alt font-extralight text-pop uppercase mb-2">{project.title}</h3>
-                                    <div className='mb-8'>
-                                        <p className="text-sm uwq:!text-xl">
-                                            {project.description.split('\n').map((line, index) => (
-                                                <React.Fragment key={index}>
-                                                    {line}
-                                                    <br />
-                                                </React.Fragment>
-                                            ))}
-                                        </p>
-                                        <h3 className='text-sm text-pop uwq:!text-2xl'><em><strong>Key Features:</strong></em></h3>
-                                        {project.features && project.features.length > 0 ? (
-                                            <ul className="list-disc list-inside text-sm uwq:!text-xl">
-                                                {project.features.map((feature, index) => (
-                                                    <li key={index}>{feature}</li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            <p>No key features available.</p>
-                                        )}
-                                        <h3 className='text-sm uwq:!text-2xl text-pop mt-4'><em><strong>Built With: </strong><span className='text-white'>{project.builtWith}</span></em></h3>
-                                    </div>
-                                    <div className="flex gap-4">
-                                        <a
-                                            href={project.demo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 uwq:!text-xl bg-pop/80 hover:bg-pop/90 text-default rounded-full transition cursor-pointer"
-                                        >
-                                            Live Demo
-                                        </a>
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 uwq:!text-xl bg-foreground text-default rounded-full hover:bg-foreground/80 transition cursor-pointer"
-                                        >
-                                            GitHub
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                            {/* Enhanced 3D Shadow Effect */}
+                            <div className="absolute -inset-6 bg-gradient-to-br from-pop/20 via-sky-500/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10 blur-2xl transform group-hover:scale-110"></div>
+                            
+                            {/* Subtle Border Glow */}
+                            <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-pop/30 transition-colors duration-500 pointer-events-none"></div>
+                        </div>
+                    ))}
+                </div>
             </section>
         </>
 
