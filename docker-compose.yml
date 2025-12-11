@@ -28,12 +28,12 @@ services:
     ports:
       - "5003:5003"
     depends_on:
-      bot-database:
+      grippendor-database:
         condition: service_healthy
 
   grippendor-database:
     image: postgres:13
-    container_name: grippendor-database
+    container_name: grippendor-db
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${GRIPPENDOR_DB_PASSWORD}
@@ -78,12 +78,12 @@ services:
     ports:
       - "5006:5006"
     depends_on:
-      noto-database:
+      noto-db:
         condition: service_healthy
 
   noto-database:
     image: postgres:13
-    container_name: noto-database
+    container_name: noto-db
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${NOTO_DB_PASSWORD}

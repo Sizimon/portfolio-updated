@@ -40,12 +40,11 @@ jobs:
           echo 'CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}' >> .env &&
           echo 'CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}' >> .env &&
           echo 'JWT_SECRET=${{ secrets.JWT_SECRET }}' >> .env &&
-          echo 'GRIPPENDOR_DB_USER=${{ secrets.DB_USER }}' >> .env &&
+          echo 'DB_USER=${{ secrets.DB_USER }}' >> .env &&
           echo 'GRIPPENDOR_DB_HOST=${{ secrets.GRIPPENDOR_DB_HOST }}' >> .env &&
           echo 'GRIPPENDOR_DB_NAME=${{ secrets.GRIPPENDOR_DB_NAME }}' >> .env &&
           echo 'GRIPPENDOR_DB_PASSWORD=${{ secrets.GRIPPENDOR_DB_PASSWORD }}' >> .env &&
           echo 'GRIPPENDOR_DB_PORT=${{ secrets.DB_PORT }}' >> .env &&
-          echo 'NOTO_DB_USER=${{ secrets.DB_USER }}' >> .env &&
           echo 'NOTO_DB_PASSWORD=${{ secrets.NOTO_DB_PASSWORD }}' >> .env &&
           echo 'NOTO_DB_HOST=${{ secrets.NOTO_DB_HOST }}' >> .env &&
           echo 'NOTO_DB_NAME=${{ secrets.NOTO_DB_NAME }}' >> .env &&
