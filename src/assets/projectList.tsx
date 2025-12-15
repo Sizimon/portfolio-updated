@@ -91,7 +91,8 @@ export const projects: Project[] = [
 
         image: images.Grippendor ? `url(${images.Grippendor})` : "url('/images/default.jpg')",
         demo: "https://szymonsamus.dev/grippendor/",
-        github: "https://github.com/Sizimon/grippendor-backend/blob/main/README.md"
+        github: "https://github.com/Sizimon/grippendor-backend/blob/main/README.md",
+        loomVideo: '/videos/GrippendorPreviewComplete.webm'
     },
     {
         title: "Oktzy",
@@ -131,7 +132,8 @@ export const projects: Project[] = [
 
         image: images.Oktzy ? `url(${images.Oktzy})` : "url('/images/default.jpg')",
         demo: "https://oktzy.com",
-        github: "https://github.com/Sizimon/oktzy/blob/main/README.md"
+        github: "https://github.com/Sizimon/oktzy/blob/main/README.md",
+        loomVideo: '/videos/OktzyPreviewComplete.webm'
     },
     {
         title: "noto()",
@@ -175,7 +177,8 @@ export const projects: Project[] = [
 
         image: images.Noto ? `url(${images.Noto})` : "url('/images/default.jpg')",
         demo: "https://szymonsamus.dev/noto/",
-        github: "https://github.com/Sizimon/noto-frontend/blob/main/README.md"
+        github: "https://github.com/Sizimon/noto-frontend/blob/main/README.md",
+        loomVideo: '/videos/NotoPreviewComplete.webm'
     },
     {
         title: "Guruweather",

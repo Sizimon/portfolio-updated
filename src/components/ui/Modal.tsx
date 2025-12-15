@@ -35,15 +35,15 @@ const Modal: React.FC<{ isOpen: number; onClose: () => void; }> = ({ isOpen, onC
     return (
         <div
             className={`fixed w-full h-screen inset-0 z-50 flex items-center justify-center transition-all duration-500 ease-out ${isOpen !== 0
-                    ? 'opacity-100 pointer-events-auto backdrop-blur-md bg-black/90'
-                    : 'opacity-0 pointer-events-none bg-black/0'
+                ? 'opacity-100 pointer-events-auto backdrop-blur-md bg-black/90'
+                : 'opacity-0 pointer-events-none bg-black/0'
                 }`}
             onClick={onClose}
         >
             <div
                 className={`relative w-[95vw] h-[95vh] md:w-[95lvw] md:h-[90lvh] max-w-7xl bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl shadow-2xl flex flex-col transform transition-all duration-700 ease-out overflow-hidden ${isOpen !== 0
-                        ? 'scale-100 translate-y-0 rotate-0'
-                        : 'scale-95 translate-y-8 rotate-1'
+                    ? 'scale-100 translate-y-0 rotate-0'
+                    : 'scale-95 translate-y-8 rotate-1'
                     }`}
                 onClick={(e) => e.stopPropagation()}
             >
@@ -61,13 +61,32 @@ const Modal: React.FC<{ isOpen: number; onClose: () => void; }> = ({ isOpen, onC
                                     </p>
                                 </div>
 
-                                {/* Video Placeholder - Side by side on desktop */}
-                                <div className='w-full md:w-96 h-40 md:h-56 bg-gradient-to-br from-pop/20 to-sky-500/20 rounded-xl md:rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-sm flex-shrink-0'>
-                                    <div className='text-center text-white'>
-                                        <div className='w-12 h-12 md:w-16 md:h-16 border-4 border-white/60 border-t-pop rounded-full animate-spin mb-3 md:mb-4 mx-auto'></div>
-                                        <p className='text-xs md:text-sm font-medium'>Loom Video Loading...</p>
-                                        <p className='text-xs opacity-70 mt-1'>Project Demo</p>
-                                    </div>
+                                {/* Video Container - Side by side on desktop */}
+                                <div className='w-full md:w-96 h-40 md:h-56 rounded-xl md:rounded-2xl overflow-hidden border border-white/10 backdrop-blur-sm flex-shrink-0 bg-black/50'>
+                                    {project.loomVideo ? (
+                                        <video
+                                            className="w-full h-full object-cover"
+                                            controls
+                                            preload="metadata"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            poster={project.image.replace('url(', '').replace(')', '')}
+                                        >
+                                            <source src={project.loomVideo} type="video/mp4" />
+                                            <source src={project.loomVideo} type="video/webm" />
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    ) : (
+                                        // Fallback placeholder if no video
+                                        <div className='w-full h-full bg-gradient-to-br from-pop/20 to-sky-500/20 flex items-center justify-center'>
+                                            <div className='text-center text-white'>
+                                                <div className='w-12 h-12 md:w-16 md:h-16 border-4 border-white/60 border-t-pop rounded-full animate-spin mb-3 md:mb-4 mx-auto'></div>
+                                                <p className='text-xs md:text-sm font-medium'>Video Coming Soon...</p>
+                                                <p className='text-xs opacity-70 mt-1'>Project Demo</p>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
