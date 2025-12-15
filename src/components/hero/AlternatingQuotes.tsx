@@ -11,7 +11,7 @@ export const AlternatingQuotes: React.FC = () => {
         'Changed a config file. Broke everything. Put it back. Still broken.',
         'Used == instead of === and spent the next hour gaslighting myself.',
         'Before checking CORS for issues, ensure server is indeed running.',
-        'Learned that setting your port 22 imbound rule to 0.0.0.0/0 is a bad idea.',
+        'Setting your port 22 inbound rule to 0.0.0.0/0 is a bad idea.',
         'Why Tailwind not working????',
         'Error: Process completed with exit code 1.',
     ];
