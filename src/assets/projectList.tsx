@@ -138,7 +138,7 @@ export const projects: Project[] = [
     {
         title: "noto()",
         short: "Rich Text Editor & Notekeeping App",
-        description: "A productivity app built on a custom rich text editor with formatting, embeds, and advanced search. The backend is optimized for efficiency with reduced server calls and API rate limiting for stability. Future plans include AI-assisted summarization and integration with ClipCurator.",
+        description: "To create a note taking app tailored to me & possibly other users, starting simple and introducing needed features over time. The app focuses on a clean writing experience combined with powerful organization tools to help users manage large note libraries effectively, for free.",
 
         goal: {
             purpose: "To create a fast, reliable, developer-focused note-taking app with a rich text editor and tags. Noto is built to streamline documentation, planning, and idea capture for software developers without the clutter of traditional note apps.",
