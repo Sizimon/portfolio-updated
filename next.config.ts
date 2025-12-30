@@ -5,6 +5,12 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
+  // Netlify specific settings
+  output: "standalone",
+  images: {
+    unoptimized: true,
+  }
 };
 
 export default nextConfig;
